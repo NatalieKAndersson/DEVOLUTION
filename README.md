@@ -46,7 +46,8 @@ It contains data from two tumors. Let's extract the data from one of them.
 
 ```
 x <- "Tumor1" #The tumor we want to look at.
-datasegment <- splitdata(test,x)```
+datasegment <- splitdata(test,x)
+```
 
 **Choose parameters**
 
@@ -77,3 +78,4 @@ Table of sizes.
 
 In the end one can use the event matrix in order to reconstruct a phylogenetic tree.
 
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/NB7_pie_ml.png" width="600">
