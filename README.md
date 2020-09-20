@@ -2,10 +2,27 @@
 Phylogenetic reconstruction from multiregional sampling data
 
 ## Installation instructions
-Instructions
 
+```{r, eval=FALSE, echo=TRUE}
+install.packages(c("readxl","xlsxjars","rJava","xlsx","phangorn","ape",
+                   "tree","writexl","tidyverse","colorspace","ggplot2","ggtree",
+                   "phytools","bbmle","picante","ggforce","stringr","plotrix",
+                   "reshape2","RColorBrewer","cluster","clValid","factoextra","NbClust","dplyr"))
 
-Try loading dataset "test". You should not get any error message.
+if (!requireNamespace("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+BiocManager::install("DEVOLUTION")
+```
+
+If no error message has appeared, continue with the installation of the DEVOLUTION package. Install it in the folder in which your data files are (by replacint PATH with this) or make sure to set the path to that location after installation. You have to be in the folder of your files in order for the software to find them.
+
+```install.packages("~PATH/DEVOLUTION_0.1.0.tar.gz", repos = NULL, type = "source")```
+
+Try loading dataset "test". You should not get any error message doing this.
+
+We can now load the package to the global environment.
+
+```require(DEVOLUTION)```
 
 ## Usage
 
