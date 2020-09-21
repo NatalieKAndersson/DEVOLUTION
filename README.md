@@ -4,7 +4,6 @@ Phylogenetic reconstruction from multiregional sampling data
 ## Installation instructions
 
 ```R
-   {r, eval=FALSE, echo=TRUE}
 install.packages(c("readxl","stringr","ape","phangorn","ggplot2",
                    "ggtree","ggimage","dplyr"))
 
@@ -45,7 +44,7 @@ library("phangorn") #Needed to transform the EM into phyDat and make trees.
 library("ggplot2") #Needed to visualize the trees.
 library("ggtree")
 library("ggimage") #Needed to insert the pies in the tree.
-library("dplyr") #Needed for the distinct function in pie.
+library("dplyr") #Needed for the distinct function in pie.it.
 ```
 ## Usage
 
@@ -92,7 +91,7 @@ Show an example of the event matrix and what it means.
 
 **Let's produce the final event matrix**
 
-```
+```R
 EM_test_newnames <- simplify.tree(file_samples_subclones,EM_test,sample_clone_matrix)
 ```
 
@@ -102,9 +101,9 @@ Table of sizes.
 
 **Phylogenetic trees**
 
-In the end one can use the event matrix in order to reconstruct a phylogenetic tree.
+In the end one can use the event matrix in order to reconstruct phylogenetic trees using the maximum likelihood and parsimony method.
 
-```
+```R
 EM_test_phy <- phydatevent(EM_test_newnames) #Transforming the EM to phyDat format.
 EM_test_mptree <- mp_tree(EM_test_phy,root) #Constructing the maximum parsimony tree.
 EM_test_mltree <- ml_tree(EM_test_phy,root) #Constructing the maximum likelihood tree.
@@ -117,6 +116,12 @@ w = 10
 h = 10
 ggsave(Treemp,filename= "Tree_mp.png",width = w,height = h)
 ggsave(Treeml,filename= "Tree_ml.png",width = w,height = h)
+```
+
+Create the pie charts. They are saved to the working directory. The function yields a matrix illustrating the sizes of each subclone throughout the samples.
+
+```R
+clone_size <- pie.it(clonenames_new_order,root) #Pie charts are created and saved. You also get a list of all subclones and their sizes in each sample.
 ```
 
 This yields a phylogenetic tree looking like this.
