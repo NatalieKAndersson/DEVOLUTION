@@ -5,10 +5,8 @@ Phylogenetic reconstruction from multiregional sampling data
 
 ```R
    {r, eval=FALSE, echo=TRUE}
-install.packages(c("readxl","xlsxjars","rJava","xlsx","phangorn","ape",
-                   "tree","writexl","tidyverse","colorspace","ggplot2","ggtree",
-                   "phytools","bbmle","picante","ggforce","stringr","plotrix",
-                   "reshape2","RColorBrewer","cluster","clValid","factoextra","NbClust","dplyr"))
+install.packages(c("readxl","stringr","ape","phangorn","ggplot2",
+                   "ggtree","ggimage","dplyr"))
 
 if (!requireNamespace("BiocManager", quietly = TRUE))
   install.packages("BiocManager")
@@ -25,10 +23,30 @@ We can now load the package to the global environment.
 
 ```R
 require(DEVOLUTION)
+require(splitdata)
+require(simplify.tree)
+require(pie.it)
+require(phydat)
+require(mp_tree)
+require(ml_tree)
+require(MP_tree)
+require(ML_tree)
 ```
 
 Try loading dataset "test". You should not get any error message doing this.
 
+Remember to load the packages that the software depends upon.
+
+```
+library("readxl") #Needed to load the data from the xlsx file.
+library("stringr") #Needed for using the function "word".
+library("ape")
+library("phangorn") #Needed to transform the EM into phyDat and make trees.
+library("ggplot2") #Needed to visualize the trees.
+library("ggtree")
+library("ggimage") #Needed to insert the pies in the tree.
+library("dplyr") #Needed for the distinct function in pie.
+```
 ## Usage
 
 In order to illustrate the usage of the package, let's go through an example using the fabricated data set built into the package named "Segment". This is a made up data set representing a SNP-array output segment file.
@@ -44,11 +62,10 @@ head(test)
 
 What does the data set look like? Describe the columns.
 
-It contains data from two tumors. Let's extract the data from one of them.
+It contains data from two tumors. The splitdata function determines the start and end position of these data sets.
 
 ```R
-x <- "Tumor1" #The tumor we want to look at.
-datasegment <- splitdata(test,x)
+samples <- splitdata(test)
 ```
 
 **Choose parameters**
@@ -67,12 +84,17 @@ TDS <- "No" #"Yes", "No" or "Only". Choose wether or not you want TDS-events to 
 Let us now make an event matrix using the fabricated data set.
 
 ```R
-EM_test <- DEVOLUTION(datasegment,event_co,sub_co,eventnumber,TDS)
+EM_test <- DEVOLUTION(test,Tumorname="NB1",event_co=1000000,samples,eventnumber=300,TDS="No") #Creating the event matrix.
 ```
+We now have the event matrix illustrating the subclones and which events each incorporates.
 
 Show an example of the event matrix and what it means.
 
 **Let's produce the final event matrix**
+
+```
+EM_test_newnames <- simplify.tree(file_samples_subclones,EM_test,sample_clone_matrix)
+```
 
 What has the program done?
 
@@ -81,5 +103,22 @@ Table of sizes.
 **Phylogenetic trees**
 
 In the end one can use the event matrix in order to reconstruct a phylogenetic tree.
+
+```
+EM_test_phy <- phydatevent(EM_test_newnames) #Transforming the EM to phyDat format.
+EM_test_mptree <- mp_tree(EM_test_phy,root) #Constructing the maximum parsimony tree.
+EM_test_mltree <- ml_tree(EM_test_phy,root) #Constructing the maximum likelihood tree.
+limitmp <- xlim(c(0, 20)) #Here you can determine the limits for the graph for mp.
+limitml <- xlim(c(0, 0.5)) #Here you can determine the limits for the graph for ml.
+Treemp <- MP_treeplot(EM_test_mptree,limitmp) #Illustrating the maximum parsimony tree.
+Treeml <- ML_treeplot(EM_test_mltree,limitml) #Illustrating the maximum likelihood tree.
+
+w = 10
+h = 10
+ggsave(Treemp,filename= "Tree_mp.png",width = w,height = h)
+ggsave(Treeml,filename= "Tree_ml.png",width = w,height = h)
+```
+
+This yields a phylogenetic tree looking like this.
 
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/NB7_pie_ml.png" width="600">
