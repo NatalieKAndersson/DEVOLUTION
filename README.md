@@ -127,3 +127,82 @@ clone_size <- pie.it(clonenames_new_order,root) #Pie charts are created and save
 This yields a phylogenetic tree looking like this.
 
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/NB7_pie_ml.png" width="600">
+
+```R
+
+BAF <- 0.57
+N_AN <- 2 #Background.
+N_BN <- 2 #Background.
+N_A1 <- 1 #Subclone 1.
+N_B1 <- 1 #Subclone 1.
+N_A2 <- 1 #Subclone 2.
+N_B2 <- 2 #Subclone 2.
+
+#Two subclones + background population.
+left <- BAF*N_AN+BAF*N_BN-N_BN
+right_C1 <- N_B1-N_BN + BAF*N_AN + BAF*N_BN - BAF*N_A1 - BAF*N_B1
+right_C2 <- N_B2-N_BN + BAF*N_AN + BAF*N_BN - BAF*N_A2 - BAF*N_B2
+
+solutions <- matrix(0,3,100)
+
+i <- 1
+j <- 1
+k <- 1
+for(i in 1:100){
+  
+  C1 <- i/100
+  
+  for(j in 1:100){
+    
+    C2 <- j/100
+    
+    tot <- C1*right_C1 + C2*right_C2
+    
+    diff <- left-tot
+    
+    tot_pop <- C1+C2
+    
+    if(abs(diff) < 0.01 && tot_pop <= 1){
+      print("Here is the difference, C1 and C2")
+      print(tot)
+      print(diff)
+      print(tot_pop)
+      print(C1)
+      print(C2)
+      
+      solutions[1,k] <- C1
+      solutions[2,k] <- C2
+      solutions[3,k] <- 1-C1-C2
+      k <- k+1
+      
+    }
+    
+    j <- j+1
+  }
+  
+  
+  i <- i+1
+}
+
+solutions_original <- solutions[,solutions[1,]!="0"]
+
+x <- c(1:ncol(solutions_original))
+
+solutions <- t(solutions_original)
+
+solutions <- c(c(solutions[,1]),c(solutions[,2]),c(solutions[,3]))
+solutions <- cbind(solutions,c(c(rep("C1",ncol(solutions_original)))
+                        ,c(rep("C2",ncol(solutions_original)))
+                        ,c(rep("Background",ncol(solutions_original)))
+                        ))
+solutions <- cbind(solutions,c(x,x,x))
+
+solutions[,1] <- round(as.numeric(solutions[,1]),2)
+df <- as.data.frame(solutions)
+
+
+ggplot(df,aes(x=as.numeric(V3),y=as.numeric(solutions)))+geom_point(aes(color=V2),size = 3)+
+  ylab("CCF")+xlab("")+scale_y_continuous(breaks=c(seq(0,1,0.1)))+theme(legend.title = element_blank())
+
+
+```
