@@ -129,21 +129,56 @@ This yields a phylogenetic tree looking like this.
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/NB7_pie_ml.png" width="600">
 
 ```R
+#########################
+#Clone size calculations#
+#########################
 
-BAF <- 0.57
+BAF <- 0.645
 N_AN <- 2 #Background.
 N_BN <- 2 #Background.
 N_A1 <- 1 #Subclone 1.
 N_B1 <- 1 #Subclone 1.
 N_A2 <- 1 #Subclone 2.
 N_B2 <- 2 #Subclone 2.
+N_t1 <- N_A1+N_B1
+N_t2 <- N_A2+N_B2
+N_b <- N_AN+N_BN
+N_p <- 4
+R <- 2^(-0.2)
+
+BAF <- 0.675
+N_AN <- 2 #Background.
+N_BN <- 2 #Background.
+N_A1 <- 1 #Subclone 1.
+N_B1 <- 2 #Subclone 1.
+N_A2 <- 1 #Subclone 2.
+N_B2 <- 3 #Subclone 2.
+N_t1 <- N_A1+N_B1
+N_t2 <- N_A2+N_B2
+N_b <- N_AN+N_BN
+N_p <- 4
+R <- 2^(-0.2)
+
+BAF <- 0.56
+N_AN <- 2 #Background.
+N_BN <- 2 #Background.
+N_A1 <- 1 #Subclone 1.
+N_B1 <- 2 #Subclone 1.
+N_A2 <- 1 #Subclone 2.
+N_B2 <- 3 #Subclone 2.
+N_t1 <- N_A1+N_B1
+N_t2 <- N_A2+N_B2
+N_b <- N_AN+N_BN
+N_p <- 4
+R <- 2^(-0.044746611)
 
 #Two subclones + background population.
 left <- BAF*N_AN+BAF*N_BN-N_BN
 right_C1 <- N_B1-N_BN + BAF*N_AN + BAF*N_BN - BAF*N_A1 - BAF*N_B1
 right_C2 <- N_B2-N_BN + BAF*N_AN + BAF*N_BN - BAF*N_A2 - BAF*N_B2
 
-solutions <- matrix(0,3,100)
+
+solutions <- matrix(0,4,1000)
 
 i <- 1
 j <- 1
@@ -162,7 +197,10 @@ for(i in 1:100){
     
     tot_pop <- C1+C2
     
-    if(abs(diff) < 0.01 && tot_pop <= 1){
+    R_calc <- (C1*N_t1+C2*N_t2+(1-C1-C2)*N_b)/N_p
+    diffR <- R-R_calc
+    
+    if(abs(diff) < 0.001 && tot_pop <= 1){
       print("Here is the difference, C1 and C2")
       print(tot)
       print(diff)
@@ -173,6 +211,7 @@ for(i in 1:100){
       solutions[1,k] <- C1
       solutions[2,k] <- C2
       solutions[3,k] <- 1-C1-C2
+      solutions[4,k] <- diffR
       k <- k+1
       
     }
@@ -190,12 +229,13 @@ x <- c(1:ncol(solutions_original))
 
 solutions <- t(solutions_original)
 
-solutions <- c(c(solutions[,1]),c(solutions[,2]),c(solutions[,3]))
+solutions <- c(c(solutions[,1]),c(solutions[,2]),c(solutions[,3]),c(solutions[,4]))
 solutions <- cbind(solutions,c(c(rep("C1",ncol(solutions_original)))
                         ,c(rep("C2",ncol(solutions_original)))
                         ,c(rep("Background",ncol(solutions_original)))
+                        ,c(rep("R-difference",ncol(solutions_original)))
                         ))
-solutions <- cbind(solutions,c(x,x,x))
+solutions <- cbind(solutions,c(x,x,x,x))
 
 solutions[,1] <- round(as.numeric(solutions[,1]),2)
 df <- as.data.frame(solutions)
@@ -204,5 +244,18 @@ df <- as.data.frame(solutions)
 ggplot(df,aes(x=as.numeric(V3),y=as.numeric(solutions)))+geom_point(aes(color=V2),size = 3)+
   ylab("CCF")+xlab("")+scale_y_continuous(breaks=c(seq(0,1,0.1)))+theme(legend.title = element_blank())
 
+C1_mean <- mean(solutions_original[1,])
+C1_sd <- sd(solutions_original[1,])
+print(C1_mean)
+print(C1_sd)
 
+C2_mean <- mean(solutions_original[2,])
+C2_sd <- sd(solutions_original[2,])
+print(C2_mean)
+print(C2_sd)
+
+Cb_mean <- mean(solutions_original[3,])
+Cb_sd <- sd(solutions_original[3,])
+print(Cb_mean)
+print(Cb_sd)
 ```
