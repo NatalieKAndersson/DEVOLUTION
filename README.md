@@ -28,7 +28,7 @@ BiocManager::install("DEVOLUTION")
 ```
 Also load all functions by marking them and pressing “Run”.
 
-#Ladda in en bild här.
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Functions.png" width="600">
 
 If no error message has appeared we are good to go!
 
@@ -55,6 +55,7 @@ What does the data set look like? Describe the columns. Make sure that you under
 - Clone size: The mutated sample fraction i.e. the fraction of cancer cells in this particular biopsy that has this aberration.
 
 #Sätt in bild på header.
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Header_test.png" width="600">
 
 It contains data from two tumors. The splitdata function determines the start and end position of these data sets. Here data is the whole file you loaded in the section above. The name is the tumor you would like to analyze now. Here you can choose between "Tumor1" and "Tumor2".
 
