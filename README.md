@@ -143,7 +143,7 @@ The goal is to incorporate user-controlled rules for avoiding imposition of illi
 
 The rule matrix should have the following structure where the first column is the mother event and the second one the daughter event it cannot have for some known reason. In the file "Segment.xlsx" there is an example of such a case in the sheet "Example_rule". In this sample 50 % of the cells have a loss of one copy of 17p13q21 which results in the allelic composition 1+0 (loss of heterozygozity = LOH) for this segment. In the biopsy 30 % of the cells have gained a copy of this segment hence having the allelic composition 2+1. A cell who has a LOH of a segment can never return to a heterozygous state. Hence, this evolutionary order of events is biologically unlikely.
 
-<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Chromosomes_lossandgain.PNG" width="200">
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Chromosomes_lossandgain.PNG" width="600">
 
 
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Rule_matrix.PNG" width="200">
