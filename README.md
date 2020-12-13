@@ -1,5 +1,5 @@
 # DEVOLUTION
-Devoution is a tool for phylogenetic reconstruction from multiregional sampling data that can incorporate information from SNP-array, WES, WGS, TDS etc. It uses the mutated sample fraction as input, which is the proportion of cancer cells in a praticular biopsy that harbor each alteration.
+Devolution is an algorithm for phylogenetic reconstruction from multiregional sampling data that can incorporate information from SNP-array, WES, WGS, TDS etc. It uses the mutated sample fraction as input, which is the proportion of cancer cells in a praticular biopsy that harbor each alteration.
 
 ## Setting up DEVOLUTION
 Download the R script denoted "DEVOLUTION" and double click on the script to open it in your R-environment.
@@ -143,11 +143,11 @@ The final trees might look something like this. You can of course also use the p
 
 The goal is to incorporate user-controlled rules for avoiding imposition of illicit biological trajectories Some genetic aberrations present in the data set might be known to never occur in the same cell for some well-known biological reason. Such constraints should optimally be supplied to the algorithm to ensure biologically plausible solutions. The user can therefore provide the DEVOLUTION algorithm with a matrix indicating which genetic aberrations in the data set that cannot be placed after one another. The subclonal deconvolution algorithm extracts a list for each genetic alteration containing information about in how many of the samples it can be allocated after a certain cluster. There might be multiple possible solutions, equally prevalent. In this instance the matrix containing information about illicit biological orders can aid the program in taking a decision regarding which of these allocations are less likely, subsequently discarding them. These rules will thus only be employed if the data set allows the genetic alterations to be placed in any other way. If the only possible way for the events to be allocated is to place them as descendants, the user will be advised to revise the original data set.
 
-The rule matrix should have the following structure where the first column is the mother event and the second one the daughter event it cannot have for some known reason. In the file "Segment.xlsx" there is an example of such a case in the sheet "Example_rule". In this sample 50 % of the cells have a loss of one copy of 17p13q21 which results in the allelic composition 1+0 (loss of heterozygozity = LOH) for this segment. In the biopsy 30 % of the cells have gained a copy of this segment hence having the allelic composition 2+1. A cell who has a LOH of a segment can never return to a heterozygous state. Hence, this evolutionary order of events is biologically unlikely.
+In the file "Segment.xlsx" there is an example of such a case in the sheet "Example_rule". In this sample 50 % of the cells have a loss of one copy of 17p13q21 which results in the allelic composition 1+0 (loss of heterozygozity = LOH) for this segment. In the biopsy 30 % of the cells have gained a copy of this segment hence having the allelic composition 2+1. A cell who has a LOH of a segment can never return to a heterozygous state. Hence, this evolutionary order of events is biologically unlikely.
 
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Chromosomes_lossandgain.PNG" width="600">
 
-
+The rule matrix should have the following structure where the first column is the mother event and the second one the daughter event it cannot have for some known reason.
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Rule_matrix.PNG" width="200">
 
 Here the tree can be seen before (left) and after (right) using the rule.
