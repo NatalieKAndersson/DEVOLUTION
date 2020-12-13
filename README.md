@@ -147,7 +147,8 @@ In the file "Segment.xlsx" there is an example of such a case in the sheet "Exam
 
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Chromosomes_lossandgain.PNG" width="600">
 
-The rule matrix should have the following structure where the first column is the mother event and the second one the daughter event it cannot have for some known reason.
+The rule matrix should have the following structure where the first column is the mother event and the second one the daughter event it cannot have.
+
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Rule_matrix.PNG" width="200">
 
 Here the tree can be seen before (left) and after (right) using the rule.
