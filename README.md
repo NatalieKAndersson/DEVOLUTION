@@ -89,6 +89,11 @@ We now have the event matrix illustrating the subclones and which events each in
 
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/EM_Tumor1.png" width="600">
 
+We can also look at the distribution of genetic alterations across the biopsies.
+
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Distribution.png" width="600">
+
+
 **Phylogenetic trees**
 
 In the end one can use the event matrix in order to reconstruct phylogenetic trees using the maximum likelihood and parsimony method.
