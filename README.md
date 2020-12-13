@@ -89,22 +89,31 @@ We now have the event matrix illustrating the subclones and which events each in
 
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/EM_Tumor1.PNG" width="500">
 
-We can also look at the distribution of genetic alterations across the biopsies.
+We can also look at the distribution of genetic alterations across the biopsies by writing the command. This is the information DEVOLUTION uses to infer the most probable evolutionary trajectory of the tumor.
+```R
+DB <- distribution(overview)
 
-<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Distribution.png" width="500">
+w = 10
+h = 10
+ggsave(DB,filename= "Distribution.png",width = w,height = h)
+```
+
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Distribution.png" width="400">
 
 
 **Phylogenetic trees**
 
-In the end one can use the event matrix in order to reconstruct phylogenetic trees using the maximum likelihood and parsimony method.
+Now we will create the phylogenetic trees based on the event matrix above. The following commands creates the trees without pie charts.
 
 ```R
 EM_test_phy <- phydatevent(EM_test_newnames) #Transforming the EM to phyDat format.
+
 EM_test_mptree <- mp_tree(EM_test_phy,root) #Constructing the maximum parsimony tree.
-EM_test_mltree <- ml_tree(EM_test_phy,root) #Constructing the maximum likelihood tree.
-limitmp <- xlim(c(0, 20)) #Here you can determine the limits for the graph for mp.
-limitml <- xlim(c(0, 0.5)) #Here you can determine the limits for the graph for ml.
+limitmp <- xlim(c(0, 20)) #Here you can determine the limits for the graph for mp. Alter so that the tree fits in the plot viewer.
 Treemp <- MP_treeplot(EM_test_mptree,limitmp) #Illustrating the maximum parsimony tree.
+
+EM_test_mltree <- ml_tree(EM_test_phy,root) #Constructing the maximum likelihood tree.
+limitml <- xlim(c(0, 0.5)) #Here you can determine the limits for the graph for ml. Alter so that the tree fits in the plot viewer.
 Treeml <- ML_treeplot(EM_test_mltree,limitml) #Illustrating the maximum likelihood tree.
 
 w = 10
@@ -113,12 +122,18 @@ ggsave(Treemp,filename= "Tree_mp.png",width = w,height = h)
 ggsave(Treeml,filename= "Tree_ml.png",width = w,height = h)
 ```
 
-Create the pie charts. They are saved to the working directory. The function yields a matrix illustrating the sizes of each subclone throughout the samples.
+Create the pie charts. They are saved to the working directory. The function yields a matrix illustrating the sizes of each subclone throughout the samples. The pie charts are also saved to your computer as individual files. They will be replaced as you do a new tree if not saved elsewhere.
 
 ```R
-clone_size <- pie.it(clonenames_new_order,root) #Pie charts are created and saved. You also get a list of all subclones and their sizes in each sample.
+pieData <- make.pie(EM_dev[[2]],root,samples,type="nocol") #Creates the pie charts.
+pieTree <- pie.tree(Treemp,pieData) #Creating phylogenetic trees with pie charts.
 ```
 
-This yields a phylogenetic tree looking like this.
+- Type: You can choose which type of pies you want. Choose between
+    - "col": Colored pie charts are used.
+    - "nocol": Red pie charts.
+    - "custom": You can employ the function with our own choice of colors as a vector. The colors will be given from the color vector you give in the same order as in the samples vector also given to the pie.tree function.
+
+The final trees might look something like this. You can of course also use the phangorn package or ggplot to alter the plot as you wish.
 
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/NB7_pie_ml.png" width="600">
