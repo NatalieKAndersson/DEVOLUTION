@@ -1,40 +1,10 @@
 # DEVOLUTION
-Phylogenetic reconstruction from multiregional sampling data
+Devoution is a tool for phylogenetic reconstruction from multiregional sampling data that can incorporate information from SNP-array, WES, WGS, TDS etc. using the mutated sample fraction as input. The mutated sample fraction is the proportion of cancer cells in a praticular biopsy that harbor an alteration.
 
-## Installation instructions
+## Setting up DEVOLUTION
+Download the R script denoted "DEVOLUTION" and put it in a folder on your computer. Double click on the script to open it in your R-environment.
 
-```R
-install.packages(c("readxl","stringr","ape","phangorn","ggplot2",
-                   "ggtree","ggimage","dplyr"))
-
-if (!requireNamespace("BiocManager", quietly = TRUE))
-  install.packages("BiocManager")
-BiocManager::install("DEVOLUTION")
-```
-
-If no error message has appeared, continue with the installation of the DEVOLUTION package. Install it in the folder in which your data files are (by replacint PATH with this) or make sure to set the path to that location after installation. You have to be in the folder of your files in order for the software to find them.
-
-```R
-install.packages("~PATH/DEVOLUTION_0.1.0.tar.gz", repos = NULL, type = "source")
-```
-
-We can now load the package to the global environment.
-
-```R
-require(DEVOLUTION)
-require(splitdata)
-require(simplify.tree)
-require(pie.it)
-require(phydat)
-require(mp_tree)
-require(ml_tree)
-require(MP_tree)
-require(ML_tree)
-```
-
-Try loading dataset "test". You should not get any error message doing this.
-
-Remember to load the packages that the software depends upon.
+Before starting your analysis, we must load the dependencies of the algorithm. These are found in the beginning of the code.
 
 ```
 library("readxl") #Needed to load the data from the xlsx file.
@@ -46,25 +16,50 @@ library("ggtree")
 library("ggimage") #Needed to insert the pies in the tree.
 library("dplyr") #Needed for the distinct function in pie.it.
 ```
-## Usage
-
-In order to illustrate the usage of the package, let's go through an example using the fabricated data set built into the package named "Segment". This is a made up data set representing a SNP-array output segment file.
-
-**Load the data**
-
-Let's load the data and take a look at the data itself.
+If they are not installet you can install them by using the following command.
 
 ```R
-test <- load_matrix(filename="Segment.xlsx",sheetname ="Tumor1")
-head(test)
+install.packages(c("readxl","stringr","ape","phangorn","ggplot2",
+                   "ggtree","ggimage","dplyr"))
+
+if (!requireNamespace("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+BiocManager::install("DEVOLUTION")
 ```
+Also load all functions by marking them and pressing “Run”.
 
-What does the data set look like? Describe the columns.
+#Ladda in en bild här.
 
-It contains data from two tumors. The splitdata function determines the start and end position of these data sets.
+If no error message has appeared we are good to go!
+
+## Usage
+If no error message has appeared, we are now ready to load some data and get going! At the top of the script you have to set the path i.e. the location of the files that will be analyzed.
+```R
+setwd("~/yourpath")
+```
+In order to illustrate the usage of the algorithm, let’s go through an example using the example data set that also can be downloaded from the github page. The data file is named “Segment.xlsx”. This is a fabricated data set representing a SNP-array output segment file for two neuroblastomas.
 
 ```R
-samples <- splitdata(test)
+data <- load_matrix(filename="Segment_NB.xlsx",sheetname ="Tumor1")
+head(data)
+```
+What does the data set look like? Describe the columns. Make sure that you understand what each of the 11 columns represents in this data file. The log2 ratio and VAF are not essential for the analysis. If not supplied, these columns will be replaced by "NA".
+
+- Tumor ID: The ID for the biopsies from the same patient.
+- Sample ID: The biopsy names.
+- Chr, Start, End: The position of the genetic alteration.
+- Med.LogR: The median log2R obtained through chromosome analysis. Not needed for the DEVOLUTION algorithm, so you could skip it or set it to NA.
+- VAF: Variant Allele Frequency. Not used here.
+- Method: The method by which this genetic aberration has been identified.
+- Cytoband: The location of the genetic alteration or gene name.
+- Clone size: The mutated sample fraction i.e. the fraction of cancer cells in this particular biopsy that has this aberration.
+
+#Sätt in bild på header.
+
+It contains data from two tumors. The splitdata function determines the start and end position of these data sets. Here data is the whole file you loaded in the section above. The name is the tumor you would like to analyze now. Here you can choose between "Tumor1" and "Tumor2".
+
+```R
+datasegment <- splitdata(data,name)
 ```
 
 **Choose parameters**
@@ -127,136 +122,3 @@ clone_size <- pie.it(clonenames_new_order,root) #Pie charts are created and save
 This yields a phylogenetic tree looking like this.
 
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/NB7_pie_ml.png" width="600">
-
-```R
-#########################
-#Clone size calculations#
-#########################
-
-BAF <- 0.645
-N_AN <- 2 #Background.
-N_BN <- 2 #Background.
-N_A1 <- 1 #Subclone 1.
-N_B1 <- 1 #Subclone 1.
-N_A2 <- 1 #Subclone 2.
-N_B2 <- 2 #Subclone 2.
-N_t1 <- N_A1+N_B1
-N_t2 <- N_A2+N_B2
-N_b <- N_AN+N_BN
-N_p <- 4
-R <- 2^(-0.2)
-
-BAF <- 0.675
-N_AN <- 2 #Background.
-N_BN <- 2 #Background.
-N_A1 <- 1 #Subclone 1.
-N_B1 <- 2 #Subclone 1.
-N_A2 <- 1 #Subclone 2.
-N_B2 <- 3 #Subclone 2.
-N_t1 <- N_A1+N_B1
-N_t2 <- N_A2+N_B2
-N_b <- N_AN+N_BN
-N_p <- 4
-R <- 2^(-0.2)
-
-BAF <- 0.56
-N_AN <- 2 #Background.
-N_BN <- 2 #Background.
-N_A1 <- 1 #Subclone 1.
-N_B1 <- 2 #Subclone 1.
-N_A2 <- 1 #Subclone 2.
-N_B2 <- 3 #Subclone 2.
-N_t1 <- N_A1+N_B1
-N_t2 <- N_A2+N_B2
-N_b <- N_AN+N_BN
-N_p <- 4
-R <- 2^(-0.044746611)
-
-#Two subclones + background population.
-left <- BAF*N_AN+BAF*N_BN-N_BN
-right_C1 <- N_B1-N_BN + BAF*N_AN + BAF*N_BN - BAF*N_A1 - BAF*N_B1
-right_C2 <- N_B2-N_BN + BAF*N_AN + BAF*N_BN - BAF*N_A2 - BAF*N_B2
-
-
-solutions <- matrix(0,4,1000)
-
-i <- 1
-j <- 1
-k <- 1
-for(i in 1:100){
-  
-  C1 <- i/100
-  
-  j <- 0
-  for(j in 1:100){
-    
-    C2 <- j/100
-    
-    tot <- C1*right_C1 + C2*right_C2
-    
-    diff <- left-tot
-    
-    tot_pop <- C1+C2
-    
-    R_calc <- (C1*N_t1+C2*N_t2+(1-C1-C2)*N_b)/N_p
-    diffR <- R-R_calc
-    
-    if(abs(diff) < 0.001 && tot_pop <= 1){
-      print("Here is the difference, C1 and C2")
-      print(tot)
-      print(diff)
-      print(tot_pop)
-      print(C1)
-      print(C2)
-      
-      solutions[1,k] <- C1
-      solutions[2,k] <- C2
-      solutions[3,k] <- 1-C1-C2
-      solutions[4,k] <- diffR
-      k <- k+1
-      
-    }
-    
-    j <- j+1
-  }
-  
-  
-  i <- i+1
-}
-
-solutions_original <- solutions[,solutions[1,]!="0"]
-
-x <- c(1:ncol(solutions_original))
-
-solutions <- t(solutions_original)
-
-solutions <- c(c(solutions[,1]),c(solutions[,2]),c(solutions[,3]),c(solutions[,4]))
-solutions <- cbind(solutions,c(c(rep("C1",ncol(solutions_original)))
-                        ,c(rep("C2",ncol(solutions_original)))
-                        ,c(rep("Background",ncol(solutions_original)))
-                        ,c(rep("R-difference",ncol(solutions_original)))
-                        ))
-solutions <- cbind(solutions,c(x,x,x,x))
-
-solutions[,1] <- round(as.numeric(solutions[,1]),2)
-df <- as.data.frame(solutions)
-
-
-ggplot(df,aes(x=as.numeric(V3),y=as.numeric(solutions)))+geom_point(aes(color=V2),size = 3)+
-  ylab("CCF")+xlab("")+scale_y_continuous(breaks=c(seq(0,1,0.1)))+theme(legend.title = element_blank())
-
-C1_mean <- mean(solutions_original[1,])
-C1_sd <- sd(solutions_original[1,])
-print(C1_mean)
-print(C1_sd)
-
-C2_mean <- mean(solutions_original[2,])
-C2_sd <- sd(solutions_original[2,])
-print(C2_mean)
-print(C2_sd)
-
-Cb_mean <- mean(solutions_original[3,])
-Cb_sd <- sd(solutions_original[3,])
-print(Cb_mean)
-print(Cb_sd)
-```
