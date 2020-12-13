@@ -147,3 +147,5 @@ The rule matrix should have the following structure where the first column is th
 
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Rule_matrix.PNG" width="200">
 
+Here the tree can be seen before (left) and after (right) using the rule.
+
