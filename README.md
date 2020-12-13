@@ -87,11 +87,11 @@ View(EM_dev[[1]])
 ```
 We now have the event matrix illustrating the subclones and which events each incorporates. Here each row represents an identified subclone. The columns represent the genetic alterations found across the biopsies. The presence of a particular alteration in the subclone is represented by the number 1.
 
-<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/EM_Tumor1.png" width="600">
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/EM_Tumor1.PNG" width="500">
 
 We can also look at the distribution of genetic alterations across the biopsies.
 
-<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Distribution.png" width="600">
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Distribution.png" width="500">
 
 
 **Phylogenetic trees**
