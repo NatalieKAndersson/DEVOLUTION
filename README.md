@@ -1,10 +1,10 @@
 # DEVOLUTION
-Devoution is a tool for phylogenetic reconstruction from multiregional sampling data that can incorporate information from SNP-array, WES, WGS, TDS etc. using the mutated sample fraction as input. The mutated sample fraction is the proportion of cancer cells in a praticular biopsy that harbor an alteration.
+Devoution is a tool for phylogenetic reconstruction from multiregional sampling data that can incorporate information from SNP-array, WES, WGS, TDS etc. It uses the mutated sample fraction as input, which is the proportion of cancer cells in a praticular biopsy that harbor each alteration.
 
 ## Setting up DEVOLUTION
-Download the R script denoted "DEVOLUTION" and put it in a folder on your computer. Double click on the script to open it in your R-environment.
+Download the R script denoted "DEVOLUTION" and double click on the script to open it in your R-environment.
 
-Before starting your analysis, we must load the dependencies of the algorithm. These are found in the beginning of the code.
+Before starting the analysis, we must load the dependencies of the algorithm. These are found in the beginning of the code.
 
 ```
 library("readxl") #Needed to load the data from the xlsx file.
@@ -34,7 +34,7 @@ Also load all functions by marking them and pressing “Run”.
 If no error message has appeared we are good to go!
 
 ## Usage
-If no error message has appeared, we are now ready to load some data and get going! At the top of the script you have to set the path i.e. the location of the files that will be analyzed.
+We are now ready to load some data and get going! At the top of the script you have to set the path i.e. the location of the files that will be analyzed.
 ```R
 setwd("~/yourpath")
 ```
@@ -44,13 +44,13 @@ In order to illustrate the usage of the algorithm, let’s go through an example
 data <- load_matrix(filename="Segment_NB.xlsx",sheetname ="Tumor1")
 head(data)
 ```
-What does the data set look like? Describe the columns. Make sure that you understand what each of the 11 columns represents in this data file. The log2 ratio and VAF are not essential for the analysis. If not supplied, these columns will be replaced by "NA".
+What does the data set look like? Describe the columns. Make sure that you understand what each of the 11 columns represents in this data file.
 
 - Tumor ID: The ID for the biopsies from the same patient.
 - Sample ID: The biopsy names.
 - Chr, Start, End: The position of the genetic alteration.
-- Med.LogR: The median log2R obtained through chromosome analysis. Not needed for the DEVOLUTION algorithm, so you could skip it or set it to NA.
-- VAF: Variant Allele Frequency. Not used here.
+- Med.LogR: The median log2R obtained through chromosome analysis. Not required.
+- VAF: Variant Allele Frequency. Not required.
 - Method: The method by which this genetic aberration has been identified.
 - Cytoband: The location of the genetic alteration or gene name.
 - Clone size: The mutated sample fraction i.e. the fraction of cancer cells in this particular biopsy that has this aberration.
@@ -69,7 +69,7 @@ The following parameters can be altered. If you do not want to change them, go w
 
 ```R
 datatypes <- "All" 
-event_co <- 1000000
+event_co <- 10*10^6
 root <- "Normal"
 ```
 - datatypes: These are your data types such as SNP-array, TDS, WGS, WES etc that you want to include in the analysis. If you write "All", all events will be included in the input file. If you exclusively want to analyze particular alterations you can set an input vector indicating which events should be kept for analysis. The command "#c(unique(test[,9]))" gives you the unique methods in your dataset.
@@ -87,7 +87,7 @@ View(EM_dev[[1]])
 ```
 We now have the event matrix illustrating the subclones and which events each incorporates. Here each row represents an identified subclone. The columns represent the genetic alterations found across the biopsies. The presence of a particular alteration in the subclone is represented by the number 1.
 
-<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/EM_R.png" width="600">
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/EM_Tumor1.png" width="600">
 
 **Phylogenetic trees**
 
