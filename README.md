@@ -15,12 +15,13 @@ library("ggplot2") #Needed to visualize the trees.
 library("ggtree")
 library("ggimage") #Needed to insert the pies in the tree.
 library("dplyr") #Needed for the distinct function in pie.it.
+library("RColorBrewer") #Needed to add the colored pie charts.
 ```
 If they are not installet you can install them by using the following command.
 
 ```R
 install.packages(c("readxl","stringr","ape","phangorn","ggplot2",
-                   "ggtree","ggimage","dplyr"))
+                   "ggtree","ggimage","dplyr","RColorBrewer"))
 
 if (!requireNamespace("BiocManager", quietly = TRUE))
   install.packages("BiocManager")
@@ -54,8 +55,7 @@ What does the data set look like? Describe the columns. Make sure that you under
 - Cytoband: The location of the genetic alteration or gene name.
 - Clone size: The mutated sample fraction i.e. the fraction of cancer cells in this particular biopsy that has this aberration.
 
-#Sätt in bild på header.
-<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Head_test.PNG" width="400">
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Head_test.PNG" width="600">
 
 It contains data from two tumors. The splitdata function determines the start and end position of these data sets. Here data is the whole file you loaded in the section above. The name is the tumor you would like to analyze now. Here you can choose between "Tumor1" and "Tumor2".
 
@@ -68,32 +68,26 @@ datasegment <- splitdata(data,name)
 The following parameters can be altered. If you do not want to change them, go with the default shown below.
 
 ```R
-event_co <- 1000000 #Cutoff for events.
-sub_co <- 0.9 #Cutoff for stem events.
-eventnumber <- 300 #The maximum number of events I think a particular sample or subclone will have.
-TDS <- "No" #"Yes", "No" or "Only". Choose wether or not you want TDS-events to be included in the following computations. If you choose yes we will not remove anything.
+datatypes <- "All" 
+event_co <- 1000000
+root <- "Normal"
 ```
+- datatypes: These are your data types such as SNP-array, TDS, WGS, WES etc that you want to include in the analysis. If you write "All", all events will be included in the input file. If you exclusively want to analyze particular alterations you can set an input vector indicating which events should be kept for analysis. The command "#c(unique(test[,9]))" gives you the unique methods in your dataset.
+- event_co: The cutoff for the start and end positions of the events in your segment file.
+- root: In what cell you want to root your tree. Choose between "Normal" or "Stem".
 
-**The event matrix**
+**DEVOLUTION**
 
-Let us now make an event matrix using the fabricated data set.
+Let us now use DEVOLUTION to create an event matrix using the fabricated data set!
 
 ```R
-EM_test <- DEVOLUTION(test,Tumorname="NB1",event_co=1000000,samples,eventnumber=300,TDS="No") #Creating the event matrix.
+EM <- DEVOLUTION(data,event_co,datatypes)
+EM_dev <- subclones(EM,file_samples_subclones)
+View(EM_dev[[1]])
 ```
-We now have the event matrix illustrating the subclones and which events each incorporates.
+We now have the event matrix illustrating the subclones and which events each incorporates. Here each row represents an identified subclone. The columns represent the genetic alterations found across the biopsies. The presence of a particular alteration in the subclone is represented by the number 1.
 
-Show an example of the event matrix and what it means.
-
-**Let's produce the final event matrix**
-
-```R
-EM_test_newnames <- simplify.tree(file_samples_subclones,EM_test,sample_clone_matrix)
-```
-
-What has the program done?
-
-Table of sizes.
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/EM_R.png" width="600">
 
 **Phylogenetic trees**
 
