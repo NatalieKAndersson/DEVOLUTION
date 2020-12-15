@@ -143,8 +143,8 @@ pieTree <- pie.tree(Treemp,pieData) #Creating phylogenetic trees with pie charts
 
 The final trees might look something like this. You can of course also use the phangorn package or ggplot to alter the plot as you wish.
 
-<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor1_mp_pie_nocol.png" width="600">
-<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor1_mp_pie.png" width="600">
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor1_mp_pie_nocol.png" width="400">
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor1_mp_pie.png" width="400">
 
 **Adding a rule**
 
