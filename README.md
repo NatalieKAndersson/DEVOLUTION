@@ -89,9 +89,9 @@ We now have the event matrix illustrating the subclones and which events each in
 
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/EM_Tumor1.PNG" width="500">
 
-We can also look at the matrix named "Clustering". This illustrates to what clusters each alteration is estimated to belong. This matrix is perfect for you to go through the data set yorself to see if there are any contradictions in the data set.
+We can also look at the matrix named "Clustering". This illustrates to what clusters each alteration is estimated to belong. This matrix is perfect for you to go through the data set yorself to see if there are any contradictions in the data set. Make sure you understand the connection between this table and the final phylogenetic trees.
 
-<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor1_cluster.PNG" width="500"> <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor1_allocation.PNG" width="500">
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor1_cluster.PNG" width="500"> <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor1_allocation.PNG" width="400">
 
 
 We can also look at the distribution of genetic alterations across the biopsies by writing the command.
@@ -104,7 +104,7 @@ ggsave(DB,filename= "Distribution.png",width = w,height = h)
 ```
 This is the information DEVOLUTION uses to infer the most probable evolutionary trajectory of the tumor.
 
-<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Distribution.png" width="400">
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Distribution_Tumor1.png" width="400">
 
 
 **Phylogenetic trees**
