@@ -38,7 +38,7 @@ We are now ready to load some data and get going! At the top of the script you h
 ```R
 setwd("~/yourpath")
 ```
-In order to illustrate the usage of the algorithm, let’s go through an example using the example data set that also can be downloaded from the github page. The data file is named “Segment.xlsx”. This is a fabricated data set representing a SNP-array output segment file for two neuroblastomas.
+In order to illustrate the usage of the algorithm, let’s go through an example using the example data set that also can be downloaded from the github page. The data file is named “Segment.xlsx”. This is a fabricated data set representing a SNP-array output segment file for two tumors.
 
 ```R
 data <- load_matrix(filename="Segment_NB.xlsx",sheetname ="Tumor1")
@@ -88,6 +88,11 @@ View(EM_dev[[1]])
 We now have the event matrix illustrating the subclones and which events each incorporates. Here each row represents an identified subclone. The columns represent the genetic alterations found across the biopsies. The presence of a particular alteration in the subclone is represented by the number 1.
 
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/EM_Tumor1.PNG" width="500">
+
+We can also look at the matrix named "Clustering". This illustrates to what clusters each alteration is estimated to belong. This matrix is perfect for you to go through the data set yorself to see if there are any contradictions in the data set.
+
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor1_cluster.PNG" width="500">
+
 
 We can also look at the distribution of genetic alterations across the biopsies by writing the command.
 ```R
