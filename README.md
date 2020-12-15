@@ -8,6 +8,7 @@ Before starting the analysis, we must load the dependencies of the algorithm. Th
 
 ```
 library("readxl") #Needed to load the data from the xlsx file.
+library("xlsx") #Needed to save matrices into xlsx-files.
 library("stringr") #Needed for using the function "word".
 library("ape")
 library("phangorn") #Needed to transform the EM into phyDat and make trees.
@@ -20,7 +21,7 @@ library("RColorBrewer") #Needed to add the colored pie charts.
 If they are not installet you can install them by using the following command.
 
 ```R
-install.packages(c("readxl","stringr","ape","phangorn","ggplot2",
+install.packages(c("readxl","xlsx","stringr","ape","phangorn","ggplot2",
                    "ggtree","ggimage","dplyr","RColorBrewer"))
 
 if (!requireNamespace("BiocManager", quietly = TRUE))
@@ -142,7 +143,8 @@ pieTree <- pie.tree(Treemp,pieData) #Creating phylogenetic trees with pie charts
 
 The final trees might look something like this. You can of course also use the phangorn package or ggplot to alter the plot as you wish.
 
-<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/NB7_pie_ml.png" width="600">
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor1_mp_pie_nocol.png" width="600">
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor1_mp_pie.png" width="600">
 
 **Adding a rule**
 
