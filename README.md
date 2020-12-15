@@ -143,6 +143,8 @@ pietree <- pie_it(Treemp,pieData,offset=1.5,size=0.21,col="no") #Adds pie charts
 
 The final trees look like this with the "nocol" and "col" setup. You can of course also use ggplot to alter the plot as you wish. The trees, pie charts and legend can all be saved separately.
 
+Compare the trees to the event matrices that we discussed in the previous section!
+
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor1_mp_pie_nocol.png" width="400"><img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor1_mp_pie.png" width="400">
 
 **Adding a rule**
