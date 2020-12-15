@@ -1,6 +1,8 @@
 # DEVOLUTION <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Logga_devolution.PNG" align = "right" width="180"/>
 Devolution is an algorithm for phylogenetic reconstruction from multiregional sampling data that can incorporate information from SNP-array, WES, WGS, TDS etc. in unison or separately. It uses the mutated sample fraction as input, which is defined as the proportion of cancer cells in each biopsy that harbor a particular genetic alteration. This can be calculated from the VAF or log2-ratio.
 
+<a href="https://zenodo.org/badge/latestdoi/297145258"><img src="https://zenodo.org/badge/297145258.svg" alt="DOI"></a>
+
 ## Setting up DEVOLUTION
 Download the R script denoted "DEVOLUTION" and double click on the script to open it in your R-environment.
 
