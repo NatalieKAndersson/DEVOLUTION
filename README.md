@@ -86,7 +86,7 @@ EM <- DEVOLUTION(data,event_co,datatypes)
 EM_dev <- subclones(EM,file_samples_subclones)
 View(EM_dev[[1]])
 ```
-We now have the event matrix illustrating the subclones and which events each incorporates. Here each row represents an identified subclone. The columns represent the genetic alterations found across the biopsies. The presence of a particular alteration in the subclone is represented by the number 1.
+Running DEVOLUTION on the dataset "Tumor1" yields an "Execution time" Time difference of 0.242177 secs. We now have the event matrix illustrating the subclones and which events each incorporates. Here each row represents an identified subclone. The columns represent the genetic alterations found across the biopsies. The presence of a particular alteration in the subclone is represented by the number 1.
 
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/EM_Tumor1.PNG" width="500">
 
