@@ -92,6 +92,7 @@ We now have the event matrix illustrating the subclones and which events each in
 We can also look at the matrix named "Clustering". This illustrates to what clusters each alteration is estimated to belong. This matrix is perfect for you to go through the data set yorself to see if there are any contradictions in the data set.
 
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor1_cluster.PNG" width="500">
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor1_allocation.pdf" width="500">
 
 
 We can also look at the distribution of genetic alterations across the biopsies by writing the command.
