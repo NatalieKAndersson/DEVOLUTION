@@ -1,4 +1,4 @@
-# DEVOLUTION <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/SubDev7.JPG" align = "right" width="180"/>
+# DEVOLUTION <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Logga.PNG" align = "right" width="180"/>
 Devolution is an algorithm for phylogenetic reconstruction from multiregional sampling data that can incorporate information from SNP-array, WES, WGS, TDS etc. It uses the mutated sample fraction as input, which is the proportion of cancer cells in a praticular biopsy that harbor each alteration.
 
 ## Setting up DEVOLUTION
