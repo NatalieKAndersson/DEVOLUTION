@@ -132,19 +132,18 @@ ggsave(Treeml,filename= "Tree_ml.png",width = w,height = h)
 Create the pie charts. They are saved to the working directory. The function yields a matrix illustrating the sizes of each subclone throughout the samples. The pie charts are also saved to your computer as individual files. They will be replaced as you do a new tree if not saved elsewhere.
 
 ```R
-pieData <- make.pie(EM_dev[[2]],root,samples,type="nocol") #Creates the pie charts.
-pieTree <- pie.tree(Treemp,pieData) #Creating phylogenetic trees with pie charts.
+pieData <- make_pie(EM_dev[[2]],root,samples,type="nocol") #Creates the pie charts.
+pietree <- pie_it(Treemp,pieData,offset=1.5,size=0.21,col="no") #Adds pie charts to the tree.
 ```
 
 - Type: You can choose which type of pies you want. Choose between
-    - "col": Colored pie charts are used.
+    - "col": Colored pie charts are used. Random order.
     - "nocol": Red pie charts.
-    - "custom": You can employ the function with our own choice of colors as a vector. The colors will be given from the color vector you give in the same order as in the samples vector also given to the pie.tree function.
+    - "custom": You can use a vector of colors of your own as an input. The colors will be given from the color vector you give in the same order as in the samples vector also given to the pie.tree function.
 
-The final trees might look something like this. You can of course also use the phangorn package or ggplot to alter the plot as you wish.
+The final trees look like this with the "nocol" and "col" setup. You can of course also use ggplot to alter the plot as you wish. The trees, pie charts and legend can all be saved separately.
 
-<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor1_mp_pie_nocol.png" width="400">
-<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor1_mp_pie.png" width="400">
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor1_mp_pie_nocol.png" width="400"><img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor1_mp_pie.png" width="400">
 
 **Adding a rule**
 
