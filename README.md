@@ -20,7 +20,7 @@ library("ggimage") #Needed to insert the pies in the tree.
 library("dplyr") #Needed for the distinct function in pie.it.
 library("RColorBrewer") #Needed to add the colored pie charts.
 ```
-If they are not installet you can install them by using the following command.
+If they are not installed you can install them by using the following command.
 
 ```R
 install.packages(c("readxl","xlsx","stringr","ape","phangorn","ggplot2",
