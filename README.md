@@ -58,13 +58,14 @@ What does the data set look like? Describe the columns. Make sure that you under
 - Cytoband: The location of the genetic alteration or gene name.
 - Clone size: The mutated sample fraction i.e. the fraction of cancer cells in this particular biopsy that has this aberration.
 
-<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Head_test.PNG" width="600">
-
 It contains data from two tumors. The splitdata function determines the start and end position of these data sets. Here data is the whole file you loaded in the section above. The name is the tumor you would like to analyze now. Here you can choose between "Tumor1" and "Tumor2".
 
 ```R
 datasegment <- splitdata(data,name)
+head(datasegment)
 ```
+
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Head_test.PNG" width="600">
 
 **Choose parameters**
 
