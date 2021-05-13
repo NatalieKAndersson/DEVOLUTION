@@ -44,7 +44,7 @@ setwd("~/yourpath")
 In order to illustrate the usage of the algorithm, let’s go through an example using the example data set that also can be downloaded from the github page. The data file is named “Segment.xlsx”. This is a fabricated data set representing a SNP-array output segment file for two tumors.
 
 ```R
-data <- load_matrix(filename="Segment_NB.xlsx",sheetname ="Tumor1")
+data <- load_matrix(filename="Segment_example.xlsx",sheetname ="Example_tumors")
 head(data)
 ```
 What does the data set look like? Describe the columns. Make sure that you understand what each of the 11 columns represents in this data file.
