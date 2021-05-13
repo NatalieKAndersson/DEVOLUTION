@@ -1,7 +1,7 @@
 ###############################################################################
 #-------------------------------DEVOLUTION------------------------------------#
 ###############################################################################
-setwd("~/Läkarprogrammet/PhD/Subclonal_deconvolution_R")
+setwd("~/yourpath")
 #Dependencies----
 library("readxl") #Needed to load the data from the xlsx file.
 library("xlsx") #Needed to save matrices into xlsx-files.
