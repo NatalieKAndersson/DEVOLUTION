@@ -3665,7 +3665,7 @@ EM <- DEVOLUTION(datasegment,event_co,datatypes=c("All"), eps = 0.5) #Creating a
 EM_dev <- subclones(EM,file_samples_subclones,root = "ALL") #The first element in this list is the new event matrix. The second one is used for making pie charts.
 DB <- distribution(overview_stem) # If you want to plot an overview.
 plot(DB)
-ggsave(DB,filename= "Distribution_PDX1.png",width = 10,height = 10)
+ggsave(DB,filename= "Distribution.png",width = 10,height = 10)
 
 #Visualizing the trees without pies and saving them
 EM_phy <- phydatevent(EM_dev[[1]]) #Transforming the EM to phyDat format.
