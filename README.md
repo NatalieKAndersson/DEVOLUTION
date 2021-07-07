@@ -174,7 +174,7 @@ An example. Imagine that you have the following data set.
 
 In this case the following event matrix is obtained from DEVOLUTION.
 
-<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/EM_multiple_final.PNG" width="600">
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/EM_multiple_final.PNG" width="400">
 
 The genetic alteration that distinguish subclone C from the other subclones have multiple solutions for its nesting.
 
