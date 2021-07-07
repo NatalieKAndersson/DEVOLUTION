@@ -164,3 +164,21 @@ The rule matrix should have the following structure where the first column is th
 
 Here the tree can be seen before (left) and after (right) using the rule.
 
+**Alternative solutions**
+There may be situations where multiple phylogenetic trees are able to explain the observed data. Therefore, an algorithm was constructed to obtain these alternative solutions. In the case where there is more than one solution, the user will be asked if the suggested solution by DEVOLUTION should be provided or an alternative solution.
+
+In that case the clusters of genetic alterations unique for those subclones that have multiple solutions are removed from the tree structure and randomly reshuffled to produce a new phylogenetic tree, that does not confer any of the rules in any of the samples or rules provided by the user. The user is also provided with a matrix illustrating which subclones in the tree are reliable and which are uncertain due to multiple possible evolutionary trajectories.
+
+An example. Imagine that you have the following data set.
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor_multiple_segment.PNG" width="600">
+
+In this case the following event matrix is obtained from DEVOLUTION.
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor_multiple_EM.PNG" width="600">
+
+The genetic alteration that distinguish subclone C from the other subclones have multiple solutions for its nesting.
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor_multiple_certainty.PNG" width="600">
+
+The user is therefore asked if the suggested tree should be shown or an alternative solution. Here you can see the suggested tree (left) and an alternative tree (right). The user can also choose to color the subclone names for which only one solution is possible (red) or multiple solutions are possible (green). The colors can also easily be changed.
+
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor_solution1_MP.PNG" width="600">
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor_solution2_MP.PNG" width="600">
