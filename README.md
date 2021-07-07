@@ -173,7 +173,8 @@ An example. Imagine that you have the following data set.
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor_multiple_segment.PNG" width="600">
 
 In this case the following event matrix is obtained from DEVOLUTION.
-<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/EM_multiple.PNG" width="300">
+
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/EM_multiple.PNG" width="600">
 
 The genetic alteration that distinguish subclone C from the other subclones have multiple solutions for its nesting.
 
