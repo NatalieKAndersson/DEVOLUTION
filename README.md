@@ -173,10 +173,11 @@ An example. Imagine that you have the following data set.
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor_multiple_segment.PNG" width="600">
 
 In this case the following event matrix is obtained from DEVOLUTION.
-<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor_multiple_EM.PNG" width="600">
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/EM_multipls.PNG" width="300">
 
 The genetic alteration that distinguish subclone C from the other subclones have multiple solutions for its nesting.
-<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Certainty_matrix.PNG" width="100">
+
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Certainty_matrix.PNG" width="150">
 
 The user is therefore asked if the suggested tree should be shown or an alternative solution. Here you can see the suggested tree (left) and an alternative tree (right). The user can also choose to color the subclone names for which only one solution is possible (red) or multiple solutions are possible (green). The colors can also easily be changed.
 
