@@ -165,6 +165,7 @@ The rule matrix should have the following structure where the first column is th
 Here the tree can be seen before (left) and after (right) using the rule.
 
 **Alternative solutions**
+
 There may be situations where multiple phylogenetic trees are able to explain the observed data. Therefore, an algorithm was constructed to obtain these alternative solutions. In the case where there is more than one solution, the user will be asked if the suggested solution by DEVOLUTION should be provided or an alternative solution.
 
 In that case the clusters of genetic alterations unique for those subclones that have multiple solutions are removed from the tree structure and randomly reshuffled to produce a new phylogenetic tree, that does not confer any of the rules in any of the samples or rules provided by the user. The user is also provided with a matrix illustrating which subclones in the tree are reliable and which are uncertain due to multiple possible evolutionary trajectories.
