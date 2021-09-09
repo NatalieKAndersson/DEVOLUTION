@@ -34,7 +34,7 @@ Also load all functions by marking them and pressing “Run”.
 
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Functions.PNG" width="400">
 
-If no error message has appeared we are good to go!
+If no error message has appeared, we are good to go!
 
 ## Usage
 We are now ready to load some data and get going! At the top of the script you have to set the path i.e. the location of the files that will be analyzed.
