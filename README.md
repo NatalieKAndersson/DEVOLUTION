@@ -19,18 +19,22 @@ library("ggtree")
 library("ggimage") #Needed to insert the pies in the tree.
 library("dplyr") #Needed for the distinct function in pie.it.
 library("RColorBrewer") #Needed to add the colored pie charts.
+library("ggridges") #Used to plot the distribution.
+library("cowplot")
+library("dbscan") #Clustering
+
 ```
 If they are not installed you can install them by using the following command.
 
 ```R
 install.packages(c("readxl","xlsx","stringr","ape","phangorn","ggplot2",
-                   "ggtree","ggimage","dplyr","RColorBrewer"))
+                   "ggtree","ggimage","dplyr","RColorBrewer","ggridges","cowplot","dbscan"))
 
 if (!requireNamespace("BiocManager", quietly = TRUE))
   install.packages("BiocManager")
 BiocManager::install("DEVOLUTION")
 ```
-Also load all functions by marking them and pressing “Run”.
+Now load all functions by marking them and pressing “Run”.
 
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Functions.PNG" width="400">
 
