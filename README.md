@@ -82,18 +82,34 @@ root <- "Normal"
 ```
 - datatypes: These are your data types such as SNP-array, TDS, WGS, WES etc that you want to include in the analysis. If you write "All", all events will be included in the input file. If you exclusively want to analyze particular alterations you can set an input vector indicating which events should be kept for analysis. The command "#c(unique(test[,9]))" gives you the unique methods in your dataset.
 - event_co: The cutoff for the start and end positions of the events in your segment file.
-- root: In what cell you want to root your tree. Choose between "Normal" or "Stem".
+- root: In what cell you want to root your tree. Choose between "Normal" or "Stem" (this is just a cell having the genetic alterations present in the stem of the tree).
 
 **DEVOLUTION**
 
 Let us now use DEVOLUTION to create an event matrix using the fabricated data set!
 
 ```R
-EM <- DEVOLUTION(data,event_co,datatypes)
-EM_dev <- subclones(EM,file_samples_subclones)
+EM <- DEVOLUTION(datasegment,event_co,datatypes=c("All"), eps = 0.5, names="letters") #Creating an event matrix based on the segment file chosen.
+EM_dev <- subclones(EM,file_samples_subclones,root = "Normal",possible_mothers,cutoff=30,names="letters")
 View(EM_dev[[1]])
 ```
-Running DEVOLUTION on the dataset "Tumor1" yields an "Execution time" Time difference of 0.242177 secs. We now have the event matrix illustrating the subclones and which events each incorporates. Here each row represents an identified subclone. The columns represent the genetic alterations found across the biopsies. The presence of a particular alteration in the subclone is represented by the number 1.
+Function: DEVOLUTION inputs:
+- Datasegment: The input data file.
+- event_co: The cutoff you have chosen for the start and end position for an event to be considered the same.
+- Datatypes: The input data file may contain data from both e.g SNP-array and WGS etc. Writing "All" includes all alterations present in the input datasegment file. You can although choose here to only include SNP-array data for example, in which case you write "SNP-array". Make sure the name corresponds to the name in column 10 in the input data file i.e. the "Method" column. You can include both SNP-array and WGS by writing c("SNP-array","WGS").
+- eps: The epsilon for the dbscan clustering. Choose according to the kNNdistplot that will appear when running the code. Should be at where the elbow of the curve is. The default is 0.5. Usually works fine.
+- names: The subclone names. Letters gives names such as "Subclone_ A", "Subclone_ B" etc. Putting "numbers" will give subclone names such as "1", "2" etc. which might be good if you have a complex dataset with a lot of subclones.
+
+Function: subclones inputs:
+- EM: De output from DEVOLUTION.
+- file_samples_subclones: More or less the input data file together with the clustering. No need to change this. It is part of the global environment after running DEVOLUTION and has this name.
+- root: Choose which cell the tree should be rooted in.
+- possible_mothers: It is part of the global environment after running DEVOLUTION. Matrix containing each cluster and in which clusters it can be nested.
+- cutoff: If you want to access alternative solutions for the phylogeny. Putting 30 means that all clusters > 30 % in size across all samples will be reshuffled to produce a new phylogeny, if it is possible.
+- names: The subclone names. Letters gives names such as "Subclone_ A", "Subclone_ B" etc. Putting "numbers" will give subclone names such as "1", "2" etc. which might be good if you have a complex dataset with a lot of subclones.
+
+
+Running DEVOLUTION on the dataset "Tumor1" yields an "Execution time" Time difference of approximately 0.24 secs. We now have the event matrix illustrating the subclones and which events each incorporates. Here each row represents an identified subclone. The columns represent the genetic alterations found across the biopsies. The presence of a particular alteration in the subclone is represented by the number 1.
 
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/EM_Tumor1.PNG" width="500">
 
