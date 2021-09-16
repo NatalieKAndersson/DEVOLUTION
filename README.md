@@ -45,7 +45,7 @@ We are now ready to load some data and get going! At the top of the script you h
 ```R
 setwd("~/yourpath")
 ```
-In order to illustrate the usage of the algorithm, let’s go through an example using the example data set that also can be downloaded from the github page. The data file is named “Segment.xlsx”. This is a fabricated data set representing a SNP-array output segment file for two tumors.
+In order to illustrate the usage of the algorithm, let’s go through an example using the example data set that also can be downloaded from the github page. The data file is named “Segment_example.xlsx” and the sheet we are going to begin with is "Example_tumors". This is a fabricated data set representing a SNP-array output segment file for two tumors.
 
 ```R
 data <- load_matrix(filename="Segment_example.xlsx",sheetname ="Example_tumors")
@@ -55,7 +55,7 @@ What does the data set look like? Describe the columns. Make sure that you under
 
 - Tumor ID: The ID for the biopsies from the same patient.
 - Sample ID: The biopsy names.
-- Chr, Start, End: The position of the genetic alteration.
+- Chr, Start, End: The position of the genetic alteration: Chromosome, start and end position.
 - Med.LogR: The median log2R obtained through chromosome analysis. Not required.
 - VAF: Variant Allele Frequency. Not required.
 - Method: The method by which this genetic aberration has been identified.
