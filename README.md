@@ -84,6 +84,11 @@ root <- "Normal"
 - event_co: The cutoff for the start and end positions of the events in your segment file.
 - root: In what cell you want to root your tree. Choose between "Normal" or "Stem" (this is just a cell having the genetic alterations present in the stem of the tree).
 
+The event_co:
+It is used to determine if two copy number alterations with a little different start and end positions, actually are the same event and differ a bit in their size due to noise.
+
+
+
 **DEVOLUTION**
 
 Let us now use DEVOLUTION to create an event matrix using the fabricated data set!
