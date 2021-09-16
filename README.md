@@ -179,9 +179,12 @@ Compare the trees to the event matrices that we discussed in the previous sectio
 You coulo add the output event matrix directly beside the phylogeny using the following command:
 t_heat <- tree_heatmap(EM[[1]],Treeml) #Change to Treemp if you want the maximum parsimony tree.
 
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tree1_EM_ml.png" width="500">
+
 If you have many samples adding pie charts may become a bit messy. Hence, adding a heat map with the pie charts instead might be an alternative. The darker the color, the more prevalent is the subclone in that sample.
 t_pie <- tree_heat_pie(EM[[1]],Treeml) #Change to Treemp if you want the maximum parsimony tree.
 
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tree1_pie_ml.png" width="500">
 
 
 **Adding a rule**
