@@ -176,6 +176,7 @@ Compare the trees to the event matrices that we discussed in the previous sectio
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor1_mp_pie_nocol.png" width="400"><img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor1_mp_pie.png" width="400">
 
 **Phylogenetic trees with heat maps**
+
 You coulo add the output event matrix directly beside the phylogeny using the following command:
 t_heat <- tree_heatmap(EM[[1]],Treeml) #Change to Treemp if you want the maximum parsimony tree.
 
