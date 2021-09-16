@@ -87,7 +87,7 @@ root <- "Normal"
 The event_co:
 It is used to determine if two copy number alterations with a little different start and end positions, actually are the same event and differ a bit in their size due to noise.
 
-<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/event_co.PNG" width="300">
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/event_co.PNG" width="500">
 
 **DEVOLUTION**
 
