@@ -118,7 +118,7 @@ Running DEVOLUTION on the dataset "Tumor1" yields an "Execution time" Time diffe
 
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/EM_Tumor1.PNG" width="500">
 
-We can also look at the matrix named "Clustering". This illustrates to what clusters each alteration is estimated to belong. This matrix is perfect for you to go through the data set yorself to see if there are any contradictions in the data set. Make sure you understand the connection between this table and the final phylogenetic trees.
+We can also look at the matrix named "Clustering". This illustrates to what clusters each alteration is estimated to belong. This matrix is perfect for you to go through the data set yourself to see if there are any contradictions in the data set. Make sure you understand the connection between this table and the final phylogenetic trees.
 
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor1_cluster.PNG" width="500"> <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor1_allocation.PNG" width="400">
 
@@ -174,6 +174,15 @@ The final trees look like this with the "nocol" and "col" setup. You can of cour
 Compare the trees to the event matrices that we discussed in the previous section!
 
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor1_mp_pie_nocol.png" width="400"><img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor1_mp_pie.png" width="400">
+
+**Phylogenetic trees with heat maps**
+You coulo add the output event matrix directly beside the phylogeny using the following command:
+t_heat <- tree_heatmap(EM[[1]],Treeml) #Change to Treemp if you want the maximum parsimony tree.
+
+If you have many samples adding pie charts may become a bit messy. Hence, adding a heat map with the pie charts instead might be an alternative. The darker the color, the more prevalent is the subclone in that sample.
+t_pie <- tree_heat_pie(EM[[1]],Treeml) #Change to Treemp if you want the maximum parsimony tree.
+
+
 
 **Adding a rule**
 
