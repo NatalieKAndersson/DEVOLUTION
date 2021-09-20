@@ -3,6 +3,7 @@ Devolution is an algorithm for phylogenetic reconstruction from multiregional sa
 
 <a href="https://zenodo.org/badge/latestdoi/297145258"><img src="https://zenodo.org/badge/297145258.svg" alt="DOI"></a>
 
+When using the algorithm, please cite: Andersson, N., Chattopadhyay, S., Valind, A. et al. DEVOLUTION—A method for phylogenetic reconstruction of aneuploid cancers based on multiregional genotyping data. Commun Biol 4, 1103 (2021). https://doi.org/10.1038/s42003-021-02637-6
 ## Setting up DEVOLUTION
 Download the R script denoted "DEVOLUTION" and double click on the script to open it in your R-environment.
 
