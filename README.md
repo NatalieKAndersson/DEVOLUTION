@@ -104,7 +104,7 @@ Function: DEVOLUTION inputs:
 - event_co: The cutoff you have chosen for the start and end position for an event to be considered the same.
 - Datatypes: The input data file may contain data from both e.g SNP-array and WGS etc. Writing "All" includes all alterations present in the input datasegment file. You can although choose here to only include SNP-array data for example, in which case you write "SNP-array". Make sure the name corresponds to the name in column 10 in the input data file i.e. the "Method" column. You can include both SNP-array and WGS by writing c("SNP-array","WGS").
 - eps: The epsilon for the dbscan clustering. Choose according to the kNNdistplot that will appear when running the code. Should be at where the elbow of the curve is. The default is 0.5. Usually works fine.
-- names: The subclone names. Letters gives names such as "Subclone_ A", "Subclone_ B" etc. Putting "numbers" will give subclone names such as "1", "2" etc. which might be good if you have a complex dataset with a lot of subclones.
+- names: The subclone names. Declaring "subclone" gives names such as "Subclone_ A", "Subclone_ B" etc. Declaring "letters" will give subclonenames such as "A", "B" etc. which might give a more clear appearance of the phylogeny. Declaring "numbers" will give subclone names such as "1", "2" etc. which might be good if you have a complex dataset with a lot of subclones.
 
 Function: subclones inputs:
 - EM: De output from DEVOLUTION.
