@@ -1,7 +1,7 @@
 ###############################################################################
 #-------------------------------DEVOLUTION------------------------------------#
 ###############################################################################
-setwd("~/Läkarprogrammet/PhD/Projekt 1/Final_DEVOLUTION")
+setwd("~/LÃ¤karprogrammet/PhD/Projekt 1/Final_DEVOLUTION")
 #Dependencies----
 library("readxl") #Needed to load the data from the xlsx file.
 library("xlsx") #Needed to save matrices into xlsx-files.
@@ -293,7 +293,7 @@ DEVOLUTION <- function(file,eventcutoff,datatypes, rule, eps,truncate,names){
       
       i <- i+1
     }
-    #print("Här är vektorn")
+    #print("HÃ¤r Ã¤r vektorn")
     #print(remove)
     remove <- remove[remove[,1]!="0",]
     
@@ -919,7 +919,7 @@ DEVOLUTION <- function(file,eventcutoff,datatypes, rule, eps,truncate,names){
                 if((as.numeric(space[c,2])-as.numeric(newspace)) >= -0.1){ #Added this due to the simulation. Too many decimals. Rounding makes events not being placed in parallel.
                   
                   daughter_pos <- match(paste(sample_clone_matrix[1,(3*i-2)],newname), possible_mothers[1,])
-                  #print("Här är c")
+                  #print("HÃ¤r Ã¤r c")
                   #print(c)
                   if(c == maxspace && possible_mothers[2,daughter_pos] =="0"){
                     possible_mothers[2,daughter_pos] <- space[c,1] #Adding the original solution.
@@ -1296,7 +1296,7 @@ DEVOLUTION <- function(file,eventcutoff,datatypes, rule, eps,truncate,names){
   #         pos_m_rows <- length(othermothers)
   # 
   #         if(length(othermothers)!=0){ #We cannot add any if it is empty.
-  #           print("Här")
+  #           print("HÃ¤r")
   #           print(othermothers)
   #           print(length(othermothers))
   #           print(eq_sub)
@@ -1479,7 +1479,7 @@ DEVOLUTION <- function(file,eventcutoff,datatypes, rule, eps,truncate,names){
                   #print(mother_most_common)
                   if(mother_most_common%in%hundredpercentclones[,columnhundred]==TRUE && mother_most_common %in% possible_mothers[,as.numeric(daughterposition)+1]==TRUE){
                     #The most common mother also exist in this 100% clone and it is also a possible mother to the clone.
-                    #print("Här")
+                    #print("HÃ¤r")
                     theonlymothers[1,tom] <- possible_mothers[1,as.numeric(daughterposition)] #The clone which is to be allocated.
                     theonlymothers[2,tom] <- mother_most_common
                   }else{
@@ -1901,7 +1901,7 @@ DEVOLUTION <- function(file,eventcutoff,datatypes, rule, eps,truncate,names){
     #print("Sample")
     #print(current_sample)
     
-    #Tystade 210716. Vet inte riktigt vad den sista kolumnen är till för.
+    #Tystade 210716. Vet inte riktigt vad den sista kolumnen Ã¤r till fÃ¶r.
     or <- 1
     subcloneswithinsample_order <- cbind(subcloneswithinsample_order,matrix(0,nrow(subcloneswithinsample_order),1))
     for(or in 1:nrow(subcloneswithinsample_order)){
@@ -3179,7 +3179,7 @@ DEVOLUTION <- function(file,eventcutoff,datatypes, rule, eps,truncate,names){
       
       clone <- motherdaughter_totalspace[a,1]
       clonerow <- match(clone,motherdaughterevent)
-      #     print("Här")
+      #     print("HÃ¤r")
       # print(motherdaughter_totalspace)
       # print(clone)
       # print(motherdaughterevent)
@@ -3865,7 +3865,7 @@ subclones <- function(EM_test,file_samples_subclones,root,possible_mothers,cutof
       s <- 1
       i <- 1
       for(i in 2:ncol(biopsy_space_base)){
-        #print("Här")
+        #print("HÃ¤r")
         b <- length(biopsy_space_base[biopsy_space_base[,i]!="0",i])-1 #Biopsies in which it exist.
         #print(b)
         reduced <- biopsy_space_base[biopsy_space_base[,i]!="0",i] #Biopsies in which it exist.
