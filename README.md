@@ -174,14 +174,14 @@ Compare the trees to the event matrices that we discussed in the previous sectio
 
 **Phylogenetic trees with heat maps**
 
-You coulo add the output event matrix directly beside the phylogeny using the following command:
+You can also add the produced event matrix directly beside the phylogeny using the following command:
 ```
 t_heat <- tree_heatmap(EM[[1]],Treeml) #Change to Treemp if you want the maximum parsimony tree.
 ```
 
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tree1_EM_ml.png" width="400">
 
-If you have many samples adding pie charts may become a bit messy. Hence, adding a heat map with the pie charts instead might be an alternative. The darker the color, the more prevalent is the subclone in that sample.
+If you have many samples, adding pie charts may become a bit messy. Hence, adding a heat map with the pie charts sizes might be an alternative. The darker the color, the more prevalent the subclone is in that sample.
 ```
 t_pie <- tree_heat_pie(EM[[1]],Treeml) #Change to Treemp if you want the maximum parsimony tree.
 ```
@@ -190,7 +190,7 @@ t_pie <- tree_heat_pie(EM[[1]],Treeml) #Change to Treemp if you want the maximum
 
 **Adding a rule**
 
-The goal is to incorporate user-controlled rules for avoiding imposition of illicit biological trajectories Some genetic aberrations present in the data set might be known to never occur in the same cell for some well-known biological reason. Such constraints should optimally be supplied to the algorithm to ensure biologically plausible solutions. The user can therefore provide the DEVOLUTION algorithm with a matrix indicating which genetic aberrations in the data set that cannot be placed after one another. The subclonal deconvolution algorithm extracts a list for each genetic alteration containing information about in how many of the samples it can be allocated after a certain cluster. There might be multiple possible solutions, equally prevalent. In this instance the matrix containing information about illicit biological orders can aid the program in taking a decision regarding which of these allocations are less likely, subsequently discarding them. These rules will thus only be employed if the data set allows the genetic alterations to be placed in any other way. If the only possible way for the events to be allocated is to place them as descendants, the user will be advised to revise the original data set.
+The goal is to incorporate user-controlled rules for avoiding imposition of illicit biological trajectories. Some genetic aberrations present in the data set might be known to never occur in the same cell for some well-known biological reason. Such constraints should optimally be supplied to the algorithm to ensure biologically plausible solutions. The user can therefore provide the DEVOLUTION algorithm with a matrix indicating which genetic aberrations in the data set that cannot be placed after one another. The subclonal deconvolution algorithm extracts a list for each genetic alteration containing information about in how many of the samples it can be allocated after a certain cluster. There might be multiple possible solutions, equally prevalent. In this instance the matrix containing information about illicit biological orders can aid the program in taking a decision regarding which of these allocations are less likely, subsequently discarding them. These rules will thus only be employed if the data set allows the genetic alterations to be placed in any other way. If the only possible way for the events to be allocated is to place them as descendants, the user will be advised to revise the original data set.
 
 In the file "Segment.xlsx" there is an example of such a case in the sheet "Example_rule". In this sample 50 % of the cells have a loss of one copy of 17p13q21 which results in the allelic composition 1+0 (loss of heterozygozity = LOH) for this segment. In the biopsy 30 % of the cells have gained a copy of this segment hence having the allelic composition 2+1. A cell who has a LOH of a segment can never return to a heterozygous state. Hence, this evolutionary order of events is biologically unlikely.
 
