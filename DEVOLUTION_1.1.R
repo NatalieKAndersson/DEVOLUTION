@@ -4548,8 +4548,6 @@ setwd("~/") #Set your working directory.
 data <- load_matrix(filename="Segment_example.xlsx",sheetname ="Example_tumors") #Extracting the whole segment file including all of the tumors.
 x <- "Tumor"
 
-data[,10] <- word(data[,10],2)
-
 #Rule matrix. The first object is the mother that the second one the daughter it cannot have according to
 #information we have from some source.
 # rule <- matrix(0,3,3)
@@ -4612,12 +4610,9 @@ ggsave(q,filename="Tree_one_EM_ml.png",width=27,height=14)
 
 
 
-
-order_samples <- c(1351,  3158,  4116,  4084,  4086,  4088,
-                   4090,  3126,  3128,  1139,  1141,  4039,
-                   4044,  4107,  4115,  3131, 3132,  3142,
-                   3143,  3156, 4092, 4108, 11109,  11111,
-                   11112,  4095,  4096,  4111, 11114)
+ 
+#If you want a specific order for the samples.
+order_samples <- c("sample1","sample2")
 class(order_samples) <- "character"
 
 pie_EM_order <- df_pie[,match(order_samples,colnames(df_pie))]
