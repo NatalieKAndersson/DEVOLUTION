@@ -31,7 +31,7 @@ If they are not installed you can install them by using the following command.
 install.packages(c("readxl","xlsx","stringr","ape","phangorn","ggplot2",
                    "ggtree","ggimage","dplyr","RColorBrewer","ggridges","cowplot","dbscan"))
 ```
-Now load all functions by marking them and pressing “Run”.
+Now load all functions in the script by marking them and pressing “Run”.
 
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Functions.PNG" width="400">
 
