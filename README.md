@@ -30,10 +30,6 @@ If they are not installed you can install them by using the following command.
 ```R
 install.packages(c("readxl","xlsx","stringr","ape","phangorn","ggplot2",
                    "ggtree","ggimage","dplyr","RColorBrewer","ggridges","cowplot","dbscan"))
-
-if (!requireNamespace("BiocManager", quietly = TRUE))
-  install.packages("BiocManager")
-BiocManager::install("DEVOLUTION")
 ```
 Now load all functions by marking them and pressing “Run”.
 
