@@ -2,7 +2,7 @@
 Devolution is an algorithm for phylogenetic reconstruction from multiregional sampling data that can incorporate information from SNP-array, WES, WGS, TDS etc. in unison or separately. It uses the mutated sample fraction as input, which is defined as the proportion of cancer cells in each biopsy that harbor a particular genetic alteration. This can be calculated from the VAF or log2-ratio.
 
 <a href="https://zenodo.org/badge/latestdoi/297145258"><img src="https://zenodo.org/badge/297145258.svg" alt="DOI"></a>
-<a href="https://www.nature.com/articles/s42003-021-02637-6"><img src="https://www.nature.com/articles/s42003-021-02637-6" alt="DOI"></a>
+<a href="https://www.nature.com/articles/s42003-021-02637-6"><img src="https://zenodo.org/badge/297145258.svg" alt="DOI"></a>
 
 When using the algorithm, please cite: Andersson, N., Chattopadhyay, S., Valind, A. et al. DEVOLUTION—A method for phylogenetic reconstruction of aneuploid cancers based on multiregional genotyping data. Commun Biol 4, 1103 (2021). https://doi.org/10.1038/s42003-021-02637-6
 ## Setting up DEVOLUTION
