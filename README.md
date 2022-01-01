@@ -209,14 +209,34 @@ write.xlsx(as.data.frame(EM_dev[[3]]),append = TRUE,"DEVOLUTION.xlsx",sheetName=
 
 You can also add the produced event matrix directly beside the phylogeny using the following command:
 ```
-t_heat <- tree_heatmap(EM[[1]],Treeml) #Change to Treemp if you want the maximum parsimony tree.
+df <- EM_mltree$tree
+df <- EM_mptree
+
+library(viridis)
+p <- ggtree(df)+
+  geom_tiplab(align=TRUE, linetype='dashed', linesize=.3)+ #Lines between the subclone name and end node.
+  #geom_tiplab()+ #Unmuting this and muting the row above instead places the subclonenames close to the end node.
+  geom_tippoint(aes(colour=label),size=4)+ geom_tree()+
+  scale_color_viridis_d("label")+
+  theme(legend.position='none')
+p
+
+#Add a heat map of the EM next to the tree.
+q <- gheatmap(p,EM_dev[[1]], offset=0.05, width=8, 
+              colnames_angle=45, hjust=1,low="white",high="steelblue")+theme(legend.position="none")+
+  scale_y_continuous(expand = expansion(mult = c(0.2,0)))
+q
 ```
 
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tree1_EM_ml.png" width="400">
 
 If you have many samples, adding pie charts may become a bit messy. Hence, adding a heat map with the pie charts sizes might be an alternative. The darker the color, the more prevalent the subclone is in that sample.
 ```
-t_pie <- tree_heat_pie(EM[[1]],Treeml) #Change to Treemp if you want the maximum parsimony tree.
+df_pie<- tree_heatmap(clonenames_new_order)
+q <- gheatmap(p,df_pie, offset=0.1, width=5, 
+              colnames_angle=45, hjust=1,low="white",high="steelblue")+theme(legend.position="none")+
+  scale_y_continuous(expand = expansion(mult = c(0.1,0)))
+q
 ```
 
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tree1_pie_ml.png" width="400">
