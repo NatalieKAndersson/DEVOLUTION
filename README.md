@@ -5,9 +5,17 @@ Devolution is an algorithm for phylogenetic reconstruction from multiregional sa
 
 When using the algorithm, please cite: Andersson, N., Chattopadhyay, S., Valind, A. et al. DEVOLUTION—A method for phylogenetic reconstruction of aneuploid cancers based on multiregional genotyping data. Commun Biol 4, 1103 (2021). https://doi.org/10.1038/s42003-021-02637-6
 ## Setting up DEVOLUTION
-Download the R script denoted "DEVOLUTION" and double click on the script to open it in your R-environment.
 
-Before starting the analysis, we must load the dependencies of the algorithm. These are found in the beginning of the code.
+DEVOLUTION can be installed by running the following lines of code
+
+```
+library(devtools)
+devtools::install_github('NatalieKAndersson/DEVOLUTION')
+library("DEVOLUTION")
+```
+
+
+Before starting the analysis, make sure you have installed the dependencies of the algorithms.
 
 ```
 library("readxl") #Needed to load the data from the xlsx file.
@@ -31,9 +39,12 @@ If they are not installed you can install them by using the following command.
 install.packages(c("readxl","xlsx","stringr","ape","phangorn","ggplot2",
                    "ggtree","ggimage","dplyr","RColorBrewer","ggridges","cowplot","dbscan"))
 ```
-Now load all functions in the script by marking them and pressing “Run”.
+
+
+An alternative to installing the DEVOLUTION package is to simply download the entire R script denoted "DEVOLUTION_1.1.R" and double click on the script to open it in your R-environment. Then load all functions in the script by marking them and pressing “Run”.
 
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Functions.PNG" width="400">
+
 
 If no error message has appeared, we are good to go!
 
@@ -62,6 +73,7 @@ What does the data set look like? Describe the columns. Make sure that you under
 It contains data from two tumors. The splitdata function determines the start and end position of these data sets. Here data is the whole file you loaded in the section above. The name is the tumor you would like to analyze now. Here you can choose between "Tumor1" and "Tumor2".
 
 ```R
+name <- "Tumor1" #Choose between Tumor1 or Tumor2.
 datasegment <- splitdata(data,name)
 head(datasegment)
 ```
@@ -122,10 +134,9 @@ We can also look at the matrix named "Clustering". This illustrates to what clus
 
 We can also look at the distribution of genetic alterations across the biopsies by writing the command.
 ```R
-DB <- distribution(overview)
-
 w = 10
 h = 10
+DB <- distribution(overview)
 ggsave(DB,filename= "Distribution.png",width = w,height = h)
 ```
 This is the information DEVOLUTION uses to infer the most probable evolutionary trajectory of the tumor.
@@ -138,27 +149,38 @@ This is the information DEVOLUTION uses to infer the most probable evolutionary 
 Now we will create the phylogenetic trees based on the event matrix above. The following commands creates the trees without pie charts.
 
 ```R
-EM_test_phy <- phydatevent(EM_test_newnames) #Transforming the EM to phyDat format.
+EM_phy <- phydatevent(EM_dev[[1]]) #Transforming the EM to phyDat format.
 
-EM_test_mptree <- mp_tree(EM_test_phy,root) #Constructing the maximum parsimony tree.
+EM_mptree <- mp_tree(EM_phy,root) #Constructing the maximum parsimony tree.
+EM_mltree <- ml_tree(EM_phy,root) #Constructing the maximum likelihood tree.
+
 limitmp <- xlim(c(0, 20)) #Here you can determine the limits for the graph for mp. Alter so that the tree fits in the plot viewer.
-Treemp <- MP_treeplot(EM_test_mptree,limitmp) #Illustrating the maximum parsimony tree.
+limitml <- xlim(c(0,1)) #Here you can determine the limits for the graph for ml. Alter so that the tree fits in the plot viewer.
 
-EM_test_mltree <- ml_tree(EM_test_phy,root) #Constructing the maximum likelihood tree.
-limitml <- xlim(c(0, 0.5)) #Here you can determine the limits for the graph for ml. Alter so that the tree fits in the plot viewer.
-Treeml <- ML_treeplot(EM_test_mltree,limitml) #Illustrating the maximum likelihood tree.
+type <- "nocol"
+Treemp <- MP_treeplot(EM_mptree,limitmp,col = type) #Illustrating the maximum parsimony tree.
+Treeml <- ML_treeplot(EM_mltree,limitml,col = type) #Illustrating the maximum likelihood tree.
 
 w = 10
 h = 10
 ggsave(Treemp,filename= "Tree_mp.png",width = w,height = h)
 ggsave(Treeml,filename= "Tree_ml.png",width = w,height = h)
+
 ```
 
 Create the pie charts. They are saved to the working directory. The function yields a matrix illustrating the sizes of each subclone throughout the samples. The pie charts are also saved to your computer as individual files. They will be replaced as you do a new tree if not saved elsewhere.
 
 ```R
-pieData <- make_pie(EM_dev[[2]],root,samples,type="nocol") #Creates the pie charts.
-pietree <- pie_it(Treemp,pieData,offset=1.5,size=0.21,col="no") #Adds pie charts to the tree.
+#Creating pie charts and saving the final tree.
+coltype <- "col" #Choose how you want your pies. nocol = Just red pie charts with a biopsy name above. col = colored pies. custom = create your own color scheme.
+samples <- as.vector(unique(datasegment[datasegment[,2]!="ALL",2])) #Or just write it.
+
+pieData <- make_pie(EM_dev[[2]],root,samples,type=coltype) #Creates the pie charts.
+pietree <- pie_it(Treemp,pieData,offset=2,size=0.17,col=coltype) #Adds pie charts to the tree. 0.21. Used 0.17 lately.
+
+w = 10
+h = 10
+ggsave(pietree,filename=paste(x,"_col_mp",".png",sep=""),width = w,height = h)
 ```
 
 - Type: You can choose which type of pies you want. Choose between
@@ -171,6 +193,17 @@ The final trees look like this with the "nocol" and "col" setup. You can of cour
 Compare the trees to the event matrices that we discussed in the previous section!
 
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor1_mp_pie_nocol.png" width="400"><img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor1_mp_pie.png" width="400">
+
+**Saving the DEVOLUTION file**
+Saving the event matrix, an updated segment file with the cluster each genetic alteration belongs to, how the allocation has been made in each sample as well as the overview matrix. 
+
+```
+write.xlsx(as.data.frame(t(EM_dev[[1]])),"DEVOLUTION.xlsx",sheetName="Event matrix") #The final event matrix.
+write.xlsx(Clustering,append = TRUE, "DEVOLUTION.xlsx",sheetName = "Clustering") #Saving the data set that has been used in order to make the EM. It includes information about the cluster each genetic alteration belongs to.
+write.xlsx(as.data.frame(t(EM)),append = TRUE,"DEVOLUTION.xlsx",sheetName="Event matrix samples") #How the clustering has been made in each sample.
+write.xlsx(as.data.frame(EM_dev[[3]]),append = TRUE,"DEVOLUTION.xlsx",sheetName="Overview") #The overview matrix illustrating the MCF for each genetic alteration across samples.
+```
+
 
 **Phylogenetic trees with heat maps**
 
