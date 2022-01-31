@@ -194,6 +194,28 @@ Compare the trees to the event matrices that we discussed in the previous sectio
 
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor1_mp_pie_nocol.png" width="400"><img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor1_mp_pie.png" width="400">
 
+*Adding customized colors*
+You can add a vector of your own as an input. The colors will be given from the color vector you give in the same order as in the samples vector also given to the pie.tree function. You will also need to add colors for the ALL and Normal columns.
+
+
+```
+#Some nice colors to choose from.
+blue <- c("#6bb5d8","#6fb9e7","#4d8dc6","#2c6f9a","#205575")
+red <- c("#ed6d70","#ea5456","#e52421","#a71916")
+yellow <- c("#f6c400","#ed8606","#e55514")
+green <- c("#add3a2","#6abfa4","#497f7a","#2c574a")
+brown <- c("#ca9e67","#936037")
+purple <- c("#d4bae0","#c9a0dc","#ae87d0","#7851a9","#522d80","#500691","#330066")
+purple <- c("#e2caea","#d4bae0","#c9a0dc","#ae87d0","#7851a9","#695093","#500691","#330066")
+grey <- c("#b9b8b8","#9d9d9c","#8a8a8a","#706f6f","#595858","#3c3c3b","#212121")
+
+col_samples <- t(as.matrix(c(blue[1],green[2],yellow[2],grey[3],purple[4], #As many as your samples.
+                            red[1],red[1]))) #Stem and Normal. Should always be here.
+
+pieData <- make_pie(EM_dev[[2]],root,samples,type="custom",custom_col = col_samples)
+
+```
+
 **Saving the DEVOLUTION file**
 Saving the event matrix, an updated segment file with the cluster each genetic alteration belongs to, how the allocation has been made in each sample as well as the overview matrix. 
 
