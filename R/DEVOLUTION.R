@@ -3617,7 +3617,7 @@ ML_treeplot <- function(ML_tree,limitml,col){
 
 #' Making new subclones.
 #' @export
-subclones <- function(EM_test,file_samples_subclones,root,possible_mothers,cutoff,names){
+subclones <- function(EM_test,file_samples_subclones,root,custom_col,possible_mothers,cutoff,names){
   if(missing(root)==TRUE){root <- "Normal"} #The default is to root the tree in a normal cell.
   EM_newnames <- unique(EM_test) #Finding all unique rows in the EM i.e. all subclones that have different sets of mutations.
   clonenames_new <- matrix(0,(as.numeric(nrow(EM_newnames))*2),500) #Creating a new matrix that will contain the new subclone names and which former subclones it includes.
