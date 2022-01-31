@@ -216,7 +216,7 @@ pieData <- make_pie(EM_dev[[2]],root,samples,type="custom",custom_col = col_samp
 
 ```
 
-<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Colors.PNG" width="400">
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Colors.PNG" width="600">
 
 
 **Saving the DEVOLUTION file**
