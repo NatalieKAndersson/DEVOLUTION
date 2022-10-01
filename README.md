@@ -144,7 +144,8 @@ This is the information DEVOLUTION uses to infer the most probable evolutionary 
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Images/Distribution_Tumor1.png" width="400">
 
 **Predetermined clusters**
-This functionality will be available in the next release of DEVOLUTION.
+
+This functionality will be available in the next release of DEVOLUTION in October 2022. This makes it easier to use DEVOLUTION on WGS and WES data.
 
 Do you have data where the genetic alterations already have been clustered by another program such as SciClone, PyClone or CRUST? Then we do not want to cluster again with dbscan as well.
 
@@ -156,7 +157,7 @@ If you have predetermined clusters. Add those cluster names as a 12:th column to
 Then signify it in the function with the command predetermined = TRUE.
 
 ```R
-EM <- DEVOLUTION(datasegment,event_co,datatypes=c("All"), eps = 0.5, names="numbers",*predetermined=TRUE*) #Creating an event matrix based on the segment file chosen.
+EM <- DEVOLUTION(datasegment,event_co,datatypes=c("All"), eps = 0.5, names="numbers",predetermined=TRUE) #Creating an event matrix based on the segment file chosen.
 ```
 
 **Phylogenetic trees**
