@@ -78,7 +78,7 @@ datasegment <- splitdata(data,name)
 head(datasegment)
 ```
 
-<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Head_test.PNG" width="600">
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Images/Head_test.PNG" width="600">
 
 **Choose parameters**
 
@@ -96,7 +96,7 @@ root <- "Normal"
 The event_co:
 It is used to determine if two copy number alterations with a little different start and end positions, actually are the same event and differ a bit in their size due to noise.
 
-<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/event_co.PNG" width="500">
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Images/event_co.PNG" width="500">
 
 **DEVOLUTION**
 
@@ -125,11 +125,11 @@ Function: subclones inputs:
 
 Running DEVOLUTION on the dataset "Tumor1" yields an "Execution time" Time difference of approximately 0.24 secs. We now have the event matrix illustrating the subclones and which events each incorporates. Here each row represents an identified subclone. The columns represent the genetic alterations found across the biopsies. The presence of a particular alteration in the subclone is represented by the number 1.
 
-<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/EM_Tumor1.PNG" width="500">
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Images/EM_Tumor1.PNG" width="500">
 
 We can also look at the matrix named "Clustering". This illustrates to what clusters each alteration is estimated to belong. This matrix is perfect for you to go through the data set yourself to see if there are any contradictions in the data set. Make sure you understand the connection between this table and the final phylogenetic trees.
 
-<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor1_cluster.PNG" width="500"> <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor1_allocation.PNG" width="400">
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Images/Tumor1_cluster.PNG" width="500"> <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Images/Tumor1_allocation.PNG" width="400">
 
 
 We can also look at the distribution of genetic alterations across the biopsies by writing the command.
@@ -141,7 +141,7 @@ ggsave(DB,filename= "Distribution.png",width = w,height = h)
 ```
 This is the information DEVOLUTION uses to infer the most probable evolutionary trajectory of the tumor.
 
-<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Distribution_Tumor1.png" width="400">
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Images/Distribution_Tumor1.png" width="400">
 
 
 **Phylogenetic trees**
@@ -192,7 +192,7 @@ The final trees look like this with the "nocol" and "col" setup. You can of cour
 
 Compare the trees to the event matrices that we discussed in the previous section!
 
-<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor1_mp_pie_nocol.png" width="400"><img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor1_mp_pie.png" width="400">
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Images/Tumor1_mp_pie_nocol.png" width="400"><img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Images/Tumor1_mp_pie.png" width="400">
 
 **Adding customized colors**
 You can add a vector of your own as an input. The colors will be given from the color vector you give in the same order as in the samples vector also given to the pie.tree function. You will also need to add colors for the ALL and Normal columns.
@@ -216,7 +216,7 @@ pieData <- make_pie(EM_dev[[2]],root,samples,type="custom",custom_col = col_samp
 
 ```
 
-<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Colors.PNG" width="600">
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Images/Colors.PNG" width="600">
 
 
 **Saving the DEVOLUTION file**
@@ -253,7 +253,7 @@ q <- gheatmap(p,EM_dev[[1]], offset=0.05, width=8,
 q
 ```
 
-<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tree1_EM_ml.png" width="400">
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Images/Tree1_EM_ml.png" width="400">
 
 If you have many samples, adding pie charts may become a bit messy. Hence, adding a heat map with the pie charts sizes might be an alternative. The darker the color, the more prevalent the subclone is in that sample.
 ```
@@ -264,7 +264,7 @@ q <- gheatmap(p,df_pie, offset=0.1, width=5,
 q
 ```
 
-<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tree1_pie_ml.png" width="400">
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Images/Tree1_pie_ml.png" width="400">
 
 **Adding a rule**
 
@@ -272,15 +272,15 @@ The goal is to incorporate user-controlled rules for avoiding imposition of illi
 
 In the file "Segment.xlsx" there is an example of such a case in the sheet "Example_rule". In this sample 50 % of the cells have a loss of one copy of 17p13q21 which results in the allelic composition 1+0 (loss of heterozygozity = LOH) for this segment. In the biopsy 30 % of the cells have gained a copy of this segment hence having the allelic composition 2+1. A cell who has a LOH of a segment can never return to a heterozygous state. Hence, this evolutionary order of events is biologically unlikely.
 
-<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Chromosomes_lossandgain.PNG" width="600">
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Images/Chromosomes_lossandgain.PNG" width="600">
 
 The rule matrix should have the following structure where the first column is the mother event and the second one the daughter event it cannot have.
 
-<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Rule_matrix.PNG" width="200">
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Images/Rule_matrix.PNG" width="200">
 
 Here the tree can be seen before (left) and after (right) using the rule.
-<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor_solution1_MP.png" width="400">
-<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor_solution2_MP.png" width="400">
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Images/Tumor_solution1_MP.png" width="400">
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Images/Tumor_solution2_MP.png" width="400">
 
 
 **Alternative solutions**
@@ -290,16 +290,16 @@ There may be situations where multiple phylogenetic trees are able to explain th
 In that case the clusters of genetic alterations unique for those subclones that have multiple solutions are removed from the tree structure and randomly reshuffled to produce a new phylogenetic tree, that does not confer any of the rules in any of the samples or rules provided by the user. The user is also provided with a matrix illustrating which subclones in the tree are reliable and which are uncertain due to multiple possible evolutionary trajectories.
 
 An example. Imagine that you have the following data set.
-<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Segment_file_multiple.PNG" width="600">
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Images/Segment_file_multiple.PNG" width="600">
 
 In this case the following event matrix is obtained from DEVOLUTION.
 
-<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/EM_multiple_final.PNG" width="400">
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Images/EM_multiple_final.PNG" width="400">
 
 The genetic alteration that distinguish subclone C from the other subclones have multiple solutions for its nesting.
 
-<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Certainty_matrix.PNG" width="150">
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Images/Certainty_matrix.PNG" width="150">
 
 The user is therefore asked if the suggested tree should be shown or an alternative solution. Here you can see the suggested tree (left) and an alternative tree (right). The user can also choose to color the subclone names for which only one solution is possible (red) or multiple solutions are possible (green). The colors can also easily be changed.
 
-<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor_solution1_MP.png" width="400"><img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Tumor_solution2_MP.png" width="400">
+<img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Images/Tumor_solution1_MP.png" width="400"><img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Images/Tumor_solution2_MP.png" width="400">
