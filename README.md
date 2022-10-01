@@ -279,6 +279,7 @@ The rule matrix should have the following structure where the first column is th
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Images/Rule_matrix.PNG" width="200">
 
 Here the tree can be seen before (left) and after (right) using the rule.
+
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Images/Tumor_solution1_MP.png" width="400">
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Images/Tumor_solution2_MP.png" width="400">
 
