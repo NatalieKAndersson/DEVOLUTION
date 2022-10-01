@@ -144,9 +144,11 @@ This is the information DEVOLUTION uses to infer the most probable evolutionary 
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Images/Distribution_Tumor1.png" width="400">
 
 **Predetermined clusters**
-Do you have data where the genetic alterations already have been clustered by another program? Then we do not want to use dbscan.
+This functionality will be available in the next release of DEVOLUTION.
 
-If you have, predetermined clusters. Add those cluster names as a 12:th column to your dataset.
+Do you have data where the genetic alterations already have been clustered by another program such as SciClone, PyClone or CRUST? Then we do not want to cluster again with dbscan as well.
+
+If you have predetermined clusters. Add those cluster names as a 12:th column to your dataset.
 
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Images/Predetermined.PNG" width="500">
 
