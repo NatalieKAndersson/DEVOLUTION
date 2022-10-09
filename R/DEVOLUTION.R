@@ -460,8 +460,8 @@ DEVOLUTION <- function(file,eventcutoff,datatypes, rule, eps,truncate,names,prec
   #########################
   #Extracting clusters, calculating the median TC for each one and assigning the
   #cluster names to the events in the segment file.
-  clusterTC <- matrix(0,1000,3) #Changed from 200 to 400 210727. Changed to 10 000 221001.
-  calculateTC <- matrix(0,1000,1)
+  clusterTC <- matrix(0,10000,3) #Changed from 200 to 400 210727. Changed to 10 000 221001.
+  calculateTC <- matrix(0,10000,1)
   i <- 1
   s <- 1
   t <- 1
