@@ -6,6 +6,14 @@
 \usage{
 ml_tree(Eventmatrix, root)
 }
+\arguments{
+\item{Eventmatrix}{The phyDat-transformed EM.}
+
+\item{root}{The root we want for the phylogeny.}
+}
+\value{
+The ML tree object.
+}
 \description{
-Maximum Likelihood
+Creating the ML object.
 }

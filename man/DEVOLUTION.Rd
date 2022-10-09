@@ -4,7 +4,16 @@
 \alias{DEVOLUTION}
 \title{Function creating the eventmatrix}
 \usage{
-DEVOLUTION(file, eventcutoff, datatypes, rule, eps, truncate, names)
+DEVOLUTION(
+  file,
+  eventcutoff,
+  datatypes,
+  rule,
+  eps,
+  truncate,
+  names,
+  preclustered
+)
 }
 \arguments{
 \item{file}{The excel file}
@@ -20,6 +29,8 @@ DEVOLUTION(file, eventcutoff, datatypes, rule, eps, truncate, names)
 \item{truncate}{If the data should be truncated.}
 
 \item{names}{How the subclones should be named.}
+
+\item{preclustered}{Whether the matrix has been preclustered or not.}
 }
 \value{
 The event matrix

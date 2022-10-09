@@ -6,6 +6,16 @@
 \usage{
 stem(eventmatrix, co, root)
 }
+\arguments{
+\item{eventmatrix}{The output from the DEVOLUTION function.}
+
+\item{co}{The cutoff. The proportion of cells that have to have a particular abberation for it to be considered a stem event.}
+
+\item{root}{If a particular subclone should be the root. Choose between "Stem", "Normal" or "None".}
+}
+\value{
+The EM together with a stem.
+}
 \description{
-Adding a stem to the data.
+Manually adding a stem to the matrix. Often not needed.
 }

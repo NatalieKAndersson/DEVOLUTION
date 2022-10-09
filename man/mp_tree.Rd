@@ -6,6 +6,14 @@
 \usage{
 mp_tree(Eventmatrix, root)
 }
+\arguments{
+\item{Eventmatrix}{The phyDat-transformed EM.}
+
+\item{root}{The root we want for the phylogeny.}
+}
+\value{
+The MP tree object.
+}
 \description{
-Maximum parsimony
+#' Creating the MP object.
 }

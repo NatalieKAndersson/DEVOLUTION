@@ -6,6 +6,16 @@
 \usage{
 ML_treeplot(ML_tree, limitml, col)
 }
+\arguments{
+\item{col}{If the phylogeny should be colored or not.}
+
+\item{MP_tree}{The MP-tree object  obtained from ml_tree()}
+
+\item{limitmp}{The size of the plotting environment. Choose so that the entire phylogeny is clearly visible.}
+}
+\value{
+The ML tree.
+}
 \description{
-Visualising the ML-tree.
+#' #' Visualizing the ML-tree object.
 }

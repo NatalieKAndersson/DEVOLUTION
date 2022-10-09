@@ -6,6 +6,12 @@
 \usage{
 phydatevent(excelfil)
 }
+\arguments{
+\item{excelfil}{The EM.}
+}
+\value{
+PhyDat-transformed EM.
+}
 \description{
-Transform the file into phyDat format.
+Transforming the event matrix into phyDat format so phylogenetic trees can be produced based on it.
 }

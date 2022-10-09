@@ -6,6 +6,16 @@
 \usage{
 splitdata(file, name, ord)
 }
+\arguments{
+\item{file}{The matrix with the genetic data i.e. the output of load_matrix.}
+
+\item{name}{The name of the tumor(s) that should be used for further analysis.}
+
+\item{ord}{How you would like to order the genetic information. If set to TRUE the matrix is ordered by tumor, then by sample and then by chromosome.}
+}
+\value{
+The processed matrix.
+}
 \description{
-Splitting the input file.
+Splitting the input excel file based on which tumors to analyze.
 }

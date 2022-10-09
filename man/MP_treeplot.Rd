@@ -6,6 +6,16 @@
 \usage{
 MP_treeplot(MP_tree, limitmp, col)
 }
+\arguments{
+\item{MP_tree}{The MP-tree object  obtained from mp_tree()}
+
+\item{limitmp}{The size of the plotting environment. Choose so that the entire phylogeny is clearly visible.}
+
+\item{col}{If the phylogeny should be colored or not.}
+}
+\value{
+The MP tree.
+}
 \description{
-Visualising the MP-tree.
+#' Visualizing the MP-tree object.
 }
