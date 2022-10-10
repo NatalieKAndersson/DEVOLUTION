@@ -145,9 +145,7 @@ This is the information DEVOLUTION uses to infer the most probable evolutionary 
 
 **Predetermined clusters**
 
-This functionality will be available in the next release of DEVOLUTION in October 2022. This makes it easier to use DEVOLUTION on WGS and WES data.
-
-Do you have data where the genetic alterations already have been clustered by another program such as SciClone, PyClone or CRUST? Then we do not want to cluster again with dbscan as well.
+Do you have data where the genetic alterations already have been clustered by another program such as SciClone, PyClone or CRUST? Then we do not want to cluster again with dbscan as well. This functionality is available now from October 2022. It makes it easier to use DEVOLUTION on WGS and WES data.
 
 If you have predetermined clusters. Add those cluster names as a 12:th column to your dataset.
 
