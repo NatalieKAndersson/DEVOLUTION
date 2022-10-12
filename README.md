@@ -166,6 +166,7 @@ root <- "Normal"
 datasegment <- splitdata(data,name=x)
 datasegment <- simplify(datasegment) #If you have predetermined clusters. Each cluster in a sample is compressed into a single row, significantly simplifying the computational load.
 EM <- DEVOLUTION(datasegment,event_co,datatypes=c("All"), eps = 0.5, names="numbers",predetermined=TRUE) #Creating an event matrix based on the segment file chosen.
+EM_dev <- subclones(EM,file_samples_subclones,root = "Normal",possible_mothers,cutoff=30,names="letters",simplified=TRUE) #Simplified=TRUE makes sure the branch lengths becomes correct later.
 ```
 
 **Phylogenetic trees**
