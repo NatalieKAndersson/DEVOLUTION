@@ -151,10 +151,20 @@ If you have predetermined clusters. Add those cluster names as a 12:th column to
 
 <img src="https://github.com/NatalieKAndersson/DEVOLUTION/blob/master/Images/Predetermined.PNG" width="500">
 
-
-Then signify it in the function with the command predetermined = TRUE.
+Then signify in the devolution algorithm that we have preclustered data with the command predetermined = TRUE.
 
 ```R
+EM <- DEVOLUTION(datasegment,event_co,datatypes=c("All"), eps = 0.5, names="numbers",predetermined=TRUE) #Creating an event matrix based on the segment file chosen.
+```
+
+
+To aid the computations you can choose to simplify your input segment file. Each sample will only contain the clusters and the median MCF of the cluster. This significantly aids the computations. If you have large datasets > 10 000 rows in the input doing this can decrease the time from 10 min to 0.2 sek, while giving the same result.
+
+```R
+event_co <- 1000
+root <- "Normal"
+datasegment <- splitdata(data,name=x)
+datasegment <- simplify(datasegment) #If you have predetermined clusters. Each cluster in a sample is compressed into a single row, significantly simplifying the computational load.
 EM <- DEVOLUTION(datasegment,event_co,datatypes=c("All"), eps = 0.5, names="numbers",predetermined=TRUE) #Creating an event matrix based on the segment file chosen.
 ```
 
