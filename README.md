@@ -164,7 +164,7 @@ To aid the computations you can choose to simplify your input segment file. Each
 event_co <- 1000
 root <- "Normal"
 datasegment <- splitdata(data,name=x)
-datasegment <- simplify(datasegment) #If you have predetermined clusters. Each cluster in a sample is compressed into a single row, significantly simplifying the computational load.
+datasegment <- simplify_matrix(datasegment) #If you have predetermined clusters. Each cluster in a sample is compressed into a single row, significantly decreasing the computational load. Note that clusters denoted "ALL" will be set to 100 % for the nesting.
 EM <- DEVOLUTION(datasegment,event_co,datatypes=c("All"), eps = 0.5, names="numbers",predetermined=TRUE) #Creating an event matrix based on the segment file chosen.
 EM_dev <- subclones(EM,file_samples_subclones,root = "Normal",possible_mothers,cutoff=30,names="letters",simplified=TRUE) #Simplified=TRUE makes sure the branch lengths becomes correct later.
 ```
