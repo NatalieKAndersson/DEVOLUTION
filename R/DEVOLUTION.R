@@ -3648,7 +3648,7 @@ ml_tree <- function(Eventmatrix,root) {
   starting_tree <- NJ(dm_h)
   starting_tree <- root(starting_tree, outgroup = root,resolve.root = TRUE)
   Lf <- pml(starting_tree, Eventmatrix) #Obtaining an object of class pml
-  Lf_JC <- optim.pml(Lf, model = "JC", optEdge = TRUE)
+  Lf_JC <- optim.pml(Lf, model = "JC", optEdge = TRUE, rearrangement = "ratchet")
   return(Lf_JC)
 }
 
