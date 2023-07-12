@@ -103,8 +103,8 @@ It is used to determine if two copy number alterations with a little different s
 Let us now use DEVOLUTION to create an event matrix using the fabricated data set!
 
 ```R
-EM <- DEVOLUTION(datasegment,event_co,datatypes=c("All"), eps = 0.5, names="letters") #Creating an event matrix based on the segment file chosen.
-EM_dev <- subclones(EM,file_samples_subclones,root = "Normal",possible_mothers,cutoff=30,names="letters")
+EM <- DEVOLUTION(datasegment,event_co,datatypes=c("All"), eps = 0.5, names="letters",preclustered=FALSE) #Creating an event matrix based on the segment file chosen.
+EM_dev <- subclones(EM,file_samples_subclones,root = "Normal",possible_mothers,cutoff=30,names="letters",simplified=FALSE)
 View(EM_dev[[1]])
 ```
 Function: DEVOLUTION inputs:
